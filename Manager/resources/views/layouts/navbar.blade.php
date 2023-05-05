@@ -37,5 +37,14 @@
                 </a>
             </li>
         </ul>
+        <div style="position: absolute; bottom: 30px; left: 54px;">
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <a class="dropdown-item" onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                    <i class="me-50" data-feather="power"></i> {{__('logout')}}</a>
+            </form>
+        </div>
+
     </div>
 </div>

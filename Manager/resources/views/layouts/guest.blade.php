@@ -94,15 +94,15 @@
 <script>
     $(window).on('load', function () {
         if (feather) {
-            feather.replace({width: 14, height: 14});
+            feather.replace({width: 14, height: 14})
         }
     })
     $(document).ready(function () {
         var interval = setInterval(function () {
-            var momentNow = moment();
-            $('#current_time').html(momentNow.format('YYYY年MM月DD日 A hh:mm'));
-        }, 100);
-    });
+            var momentNow = moment()
+            $('#current_time').html(momentNow.format('YYYY年MM月DD日 A hh:mm'))
+        }, 100)
+    })
 </script>
 </body>
 <!-- END: Body-->

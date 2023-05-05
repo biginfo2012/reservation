@@ -152,20 +152,20 @@
         </div>
     </div>
     <script>
-        $(document).ready(function (){
-            $('.text-content').each(function (){
-                let content = $(this).val();
-                console.log(content);
-                $(this).next().html(content);
-            })
-        })
-        var csrfToken = $('[name="csrf_token"]').attr('content');
+        // $(document).ready(function (){
+        //     $('.text-content').each(function (){
+        //         let content = $(this).val();
+        //
+        //         $(this).next().html(content);
+        //     })
+        // })
+        // var csrfToken = $('[name="csrf_token"]').attr('content');
         function refreshToken(){
             $( "#login_form" ).submit();
             // $.get('refresh-csrf').done(function(data){
             //     csrfToken = data; // the new token
             //     //$('[name="_token"]').val(data);
-            //     console.log(data);
+            //
             //     $( "#login_form" ).submit();
             // });
         }

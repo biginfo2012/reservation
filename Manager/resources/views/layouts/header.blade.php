@@ -8,19 +8,11 @@
             <a class="color-white font-medium-4" href="/dashboard">{{__('manager-sub-title')}}</a>
         </div>
         <ul class="nav navbar-nav align-items-center ms-auto">
-            <li class="nav-item dropdown dropdown-language me-3">
+            <li class="nav-item me-3">
                 <p id="now_time" class="mb-0" style="margin-right: 15px;"></p>
             </li>
-            <li class="nav-item d-none d-lg-block me-3">
+            <li class="nav-item d-lg-block me-3">
                 <span class="user-name fw-bolder">ログイン名: {{Auth::user()->name}}</span>
-            </li>
-            <li class="nav-item nav-search">
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <a class="dropdown-item" onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                        <i class="me-50" data-feather="power"></i> {{__('logout')}}</a>
-                </form>
             </li>
         </ul>
     </div>

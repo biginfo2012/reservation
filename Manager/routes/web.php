@@ -27,10 +27,18 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('reservation-list', [ReservationController::class, 'index'])->name('reservation-list');
+    Route::post('reservation-table', [ReservationController::class, 'reservationTable'])->name('reservation-table');
+    Route::get('reservation-edit/{id}', [ReservationController::class, 'reservationEdit'])->name('reservation-edit');
 
     Route::get('client-manage', [ClientController::class, 'index'])->name('client-manage');
+    Route::post('client-table', [ClientController::class, 'clientTable'])->name('client-table');
+    Route::get('client-edit/{id}', [ClientController::class, 'clientEdit'])->name('client-edit');
+    Route::post('client-export-csv', [ClientController::class, 'clientExportCSV'])->name('client-export-csv');
 
     Route::get('noti-manage', [NotificationController::class, 'index'])->name('noti-manage');
+    Route::post('noti-table', [NotificationController::class, 'notiTable'])->name('noti-table');
+    Route::post('noti-save', [NotificationController::class, 'notiSave'])->name('noti-save');
+    Route::post('noti-delete', [NotificationController::class, 'notiDelete'])->name('noti-delete');
 
     Route::get('shop-manage', [ShopController::class, 'index'])->name('shop-manage');
 

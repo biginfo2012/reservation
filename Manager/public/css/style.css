@@ -10,7 +10,7 @@
     margin: 0 !important;
     position: fixed !important;
     left: 0 !important;
-    z-index: 1100 !important;
+    z-index: 1040 !important;
     border-radius: 0 !important;
 }
 .color-white{
@@ -27,4 +27,18 @@
 .avatar .avatar-content{
     width: 32px !important;
     height: 32px !important;
+}
+
+body, tr, .form-control, .form-select{
+    color: black !important;
+    font-size: 15px;
+}
+tr, th, .col-form-label-lg{
+    font-size: 15px !important;
+}
+div.dataTables_wrapper .dataTables_info{
+    color: black;
+}
+.color-red-tmp{
+    color: red !important;
 }

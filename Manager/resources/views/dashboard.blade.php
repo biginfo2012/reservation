@@ -100,9 +100,24 @@
                                 <p class="card-text font-medium-1 me-25 mb-0">{{__('date')}}: {{date('d/m/Y')}}</p>
                             </div>
                         </div>
-                        <div class="card-body statistics-body">
+                        <div class="card-body pt-0">
                             <div class="row">
+                                <div class="my-0 col-md-12">
+                                    <table class="table table-separate table-head-custom table-checkable" id="table">
+                                        <thead>
+                                        <tr>
+                                            <th class="text-center">{{__('shop-name')}}</th>
+                                            <th class="text-center">{{__('people')}}</th>
+                                            <th class="text-center">{{__('first-visit')}}</th>
+                                            <th class="text-center">{{__('re-visit')}}</th>
+                                            <th class="text-center">{{__('price')}}</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
 
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -111,4 +126,35 @@
             </div>
         </section>
     </div>
+    <script>
+        $(document).ready(function (){
+            var t = $('#table');
+            t.DataTable({
+                responsive: !0,
+                dom: "<'row'<'col-sm-12'tr>>\n\t\t\t<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>",
+                lengthMenu: [20, 50, 100],
+                pageLength: 20,
+                language: {
+                    "decimal": "",
+                    "emptyTable": "現在ありません",
+                    "info": "_TOTAL_中_START_から_END_を表示",
+                    "infoEmpty": "0~0の0を表示。",
+                    "infoFiltered": "(filtered from _MAX_ total entries)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": " _MENU_ ",
+                    "loadingRecords": "ロード中...",
+                    "processing": "処理中...",
+                    "search": "検索:",
+                    "zeroRecords": "一致する検索資料がありません。",
+                    "paginate": {
+                        "first": "初めに",
+                        "last": "最後",
+                        "next": "次へ",
+                        "previous": "前へ"
+                    },
+                },
+            });
+        })
+    </script>
 </x-app-layout>

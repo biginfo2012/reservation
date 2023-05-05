@@ -122,29 +122,29 @@
 <!-- END: Theme JS-->
 
 <!-- BEGIN: Page JS-->
-
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
 <!-- END: Page JS-->
 <script src="{{ asset('js/custom.js') }}"></script>
 <script>
-    let token = '{{csrf_token()}}';
+    let token = '{{csrf_token()}}'
     $(window).on('load', function () {
         if (feather) {
             feather.replace({
                 width: 14,
                 height: 14
-            });
+            })
         }
     })
     $(document).ready(function () {
         var interval = setInterval(function () {
-            var momentNow = moment();
+            var momentNow = moment()
             let d = momentNow.format('YYYY年MM月DD日')
             let t = momentNow.format('HH:mm')
-            let content = '<span style="margin-right: 20px;">' + d + '</span>' + '<span>' + t + '</span>'
-            //$('#now_time').html(momentNow.format('hh:mm:ss YYYY年MM月DD日'));
-            $('#now_time').html(content);
-        }, 100);
-    });
+            let content = '<span style="margin-right: 20px">' + d + '</span>' + '<span>' + t + '</span>'
+            //$('#now_time').html(momentNow.format('hh:mm:ss YYYY年MM月DD日'))
+            $('#now_time').html(content)
+        }, 100)
+    })
     jQuery.extend(jQuery.validator.messages, {
         required: "この項目は必須です。",
         remote: "このフィールドを修正してください。",
@@ -163,7 +163,7 @@
         range: jQuery.validator.format("{0}~{1}の間の値を入力してください。"),
         max: jQuery.validator.format("{0}以下の値を入力してください。"),
         min: jQuery.validator.format("{0}以上の値を入力してください。")
-    });
+    })
 </script>
 </body>
 <!-- END: Body-->
