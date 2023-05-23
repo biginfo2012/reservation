@@ -149,7 +149,7 @@ function deleteData(id, url){
         confirmButtonText: 'はい',
         cancelButtonText: 'キャンセル',
         customClass: {
-            confirmButton: 'btn btn-primary',
+            confirmButton: 'btn background-dark-blue color-white',
             cancelButton: 'btn btn-outline-danger ms-1'
         },
         buttonsStyling: false

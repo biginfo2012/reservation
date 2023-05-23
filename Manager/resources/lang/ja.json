@@ -72,5 +72,15 @@
     "day": "日",
     "hour": "時",
     "minute": "分",
-    "register": "登録"
+    "register": "登録",
+    "shop": "店舗",
+    "post-code": "郵便番号",
+    "no-half": "ハーフなし",
+    "address": "住所",
+    "office-number": "ビル・部屋番号",
+    "phone": "電話番号",
+    "represent": "代表者名",
+    "shop-url": "店舗用URL",
+    "note": "備考",
+    "char": "文字"
 }

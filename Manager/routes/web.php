@@ -41,6 +41,10 @@ Route::group(['middleware' => 'auth'], function (){
     Route::post('noti-delete', [NotificationController::class, 'notiDelete'])->name('noti-delete');
 
     Route::get('shop-manage', [ShopController::class, 'index'])->name('shop-manage');
+    Route::post('shop-table', [ShopController::class, 'shopTable'])->name('shop-table');
+    Route::post('shop-save', [ShopController::class, 'shopSave'])->name('shop-save');
+    Route::post('shop-delete', [ShopController::class, 'shopDelete'])->name('shop-delete');
+    Route::get('shop-create-code', [ShopController::class, 'shopCreateCode'])->name('shop-create-code');
 
     Route::get('menu-manage', [MenuController::class, 'index'])->name('menu-manage');
 

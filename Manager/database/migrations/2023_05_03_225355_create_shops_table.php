@@ -25,6 +25,7 @@ class CreateShopsTable extends Migration
             $table->string('represent')->nullable();
             $table->string('represent_phone')->nullable();
             $table->string('note')->nullable();
+            $table->dateTime('deleted_at')->nullable();
             $table->timestamps();
         });
     }

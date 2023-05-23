@@ -127,8 +127,26 @@
             getTableData('{{route('noti-table')}}')
         })
         $(document).ready(function () {
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
             $('#create_noti').click(function () {
                 $('#save_noti')[0].disabled = false
+                $('#id').val("")
                 $('#title').val("")
                 $('input:radio[name="status"]').filter('[value="2"]').attr('checked', true)
                 $('label.publish-status').text('{{__('now-publish')}}')
@@ -143,7 +161,7 @@
                         link: [],
                         air: []
                     },
-                })
+                }).summernote('code', "")
             })
             $("input[type=radio][name=status]").change(function () {
                 if(this.value == '1'){
@@ -156,10 +174,10 @@
             $('#save_noti').click(function (e) {
                 e.preventDefault()
                 let content = $('.summernote-noti').summernote('code')
-                if (content != "" && $('#save_form').valid()) {
-                    if($('input:radio[name="status"]:checked').val() == 1 && $('#publish_time').val() == ""){
-                        return
-                    }
+                console.log(content)
+                if ($('#save_form').valid()) {
+                    if(content == "" || content == "<p><br></p>") return
+                    if($('input:radio[name="status"]:checked').val() == 1 && $('#publish_time').val() == "") return
                     var paramObj = new FormData($('#save_form')[0])
                     paramObj.append('note', content)
                     $.ajaxSetup({
@@ -174,26 +192,11 @@
                         contentType: false,
                         processData: false,
                         success: function (response) {
-                            toastr.options = {
-                                "closeButton": true,
-                                "debug": false,
-                                "newestOnTop": false,
-                                "progressBar": false,
-                                "positionClass": "toast-top-right",
-                                "preventDuplicates": false,
-                                "onclick": null,
-                                "showDuration": "300",
-                                "hideDuration": "1000",
-                                "timeOut": "5000",
-                                "extendedTimeOut": "1000",
-                                "showEasing": "swing",
-                                "hideEasing": "linear",
-                                "showMethod": "fadeIn",
-                                "hideMethod": "fadeOut"
-                            }
+
                             if (response.status == true) {
                                 toastr.success("成功しました。")
-                                window.history.back()
+                                getTableData('{{route('noti-table')}}')
+                                $('#editNotification').modal('hide')
                             } else {
                                 toastr.warning("失敗しました。")
                             }
@@ -206,12 +209,12 @@
             })
         })
         $(document).on('click', '.delete-noti', function () {
-            let id = this.data('id')
-            deleteData(id, '{{route('noti-delete')}}')
+            let id = $(this).data('id')
+            deleteDataNoti(id, '{{route('noti-delete')}}')
         })
         $(document).on('click', '.edit-noti', function () {
-            $('#id').val(this.data('id'))
-            let status = this.data('status')
+            $('#id').val($(this).data('id'))
+            let status = $(this).data('status')
             if(status == 2){
                 $('#save_noti')[0].disabled = true
                 $('label.publish-status').text('{{__('published')}}')
@@ -238,6 +241,59 @@
                 }
             })
             $('.summernote-noti').summernote('code', content)
+            $('#editNotification').modal('toggle')
         })
+        function deleteDataNoti(id, url){
+            Swal.fire({
+                title: '本当に削除しますか？',
+                text: "これを戻すことができません！",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'はい',
+                cancelButtonText: 'キャンセル',
+                customClass: {
+                    confirmButton: 'btn background-dark-blue color-white',
+                    cancelButton: 'btn btn-outline-danger ms-1'
+                },
+                buttonsStyling: false
+            }).then(function (result) {
+                if (result.value) {
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': token
+                        }
+                    })
+                    $.ajax({
+                        url: url,
+                        type:'post',
+                        data: {
+                            id : id
+                        },
+                        success: function (response) {
+                            if(response.status == true){
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: '削除しました！',
+                                    // text: '削除しました！',
+                                    customClass: {
+                                        confirmButton: 'btn btn-dark-blue color-white'
+                                    }
+                                }).then(function (result) {
+                                    if (result.value) {
+                                        getTableData('{{route('noti-table')}}')
+                                    }})
+                                //toastr.success("成功しました。")
+                            }
+                            else {
+                                toastr.warning("失敗しました。")
+                            }
+                        },
+                        error: function () {
+
+                        }
+                    })
+                }
+            })
+        }
     </script>
 </x-app-layout>
