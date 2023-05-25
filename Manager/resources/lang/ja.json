@@ -82,5 +82,15 @@
     "represent": "代表者名",
     "shop-url": "店舗用URL",
     "note": "備考",
-    "char": "文字"
+    "char": "文字",
+    "password-change": "パスワードを変更する",
+    "user-name": "ユーザ名",
+    "change-password": "パスワードの変更",
+    "current-password": "以前のパスワード",
+    "new-password": "新しいパスワード",
+    "password-confirm": "パスワードを認証",
+    "first": "初診",
+    "twice": "再診",
+    "male": "男性",
+    "female": "女性"
 }

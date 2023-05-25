@@ -22,7 +22,7 @@
                                                style="padding-right: 0">{{__('client-name')}}</label>
                                         <div class="col-sm-10" style="padding-left: 0">
                                             <input type="text" id="client-id" class="form-control" name="client_id"
-                                                   placeholder="" value="{{isset($user) ? $user->email : ''}}" required
+                                                   placeholder="" value="{{$data->last_name . $data->first_name}}" required
                                                    tabindex="3" data-index="3"/>
                                         </div>
                                     </div>
@@ -33,7 +33,7 @@
                                                style="padding-right: 0">{{__('sei-mei')}}</label>
                                         <div class="col-sm-10" style="padding-left: 0">
                                             <input type="text" id="sei-mei" class="form-control" name="sei_mei"
-                                                   placeholder="" {{isset($user) ? '' : 'required'}} minlength="8"
+                                                   placeholder="" value="{{$data->sei . $data->mei}}"
                                                    tabindex="4" data-index="4"/>
                                         </div>
                                     </div>
@@ -46,7 +46,7 @@
                                                style="padding-right: 0">{{__('phone-number')}}</label>
                                         <div class="col-sm-10" style="padding-left: 0">
                                             <input type="text" id="phone-number" class="form-control" name="phone_number"
-                                                   placeholder="" {{isset($user) ? '' : 'required'}}
+                                                   placeholder="" value="{{$data->phone}}"
                                                    tabindex="5" data-index="5"/>
                                         </div>
                                     </div>
@@ -57,7 +57,7 @@
                                                style="padding-right: 0">{{__('email')}}</label>
                                         <div class="col-sm-10" style="padding-left: 0">
                                             <input type="email" id="email" class="form-control" name="email"
-                                                   placeholder="" value="{{isset($user) ? $user->address : ''}}"
+                                                   placeholder="" value="{{$data->email}}"
                                                    required tabindex="6" data-index="6"/>
                                         </div>
                                     </div>
@@ -68,7 +68,7 @@
                                                style="padding-right: 0">{{__('gender')}}</label>
                                         <div class="col-sm-10" style="padding-left: 0">
                                             <input type="text" id="gender" class="form-control" name="gender"
-                                                   placeholder="" value="{{isset($user) ? $user->address : ''}}"
+                                                   placeholder="" value="{{$data->gender == 1 ? __('female') : __('male')}}"
                                                    required tabindex="7" data-index="7"/>
                                         </div>
                                     </div>
@@ -85,7 +85,17 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-
+                                        @foreach($reservations as $index => $item)
+                                            <tr>
+                                                <td class="p-0 border text-left align-middle px-1">{{date('Y/m/d H:i', strtotime($item['reservation_time']))}}</td>
+                                                <td class="p-0 border text-left align-middle px-1">{{$item['shop']['shop_name']}}</td>
+                                                <td class="p-0 border text-center align-middle">
+                                                    <button data-id="{{$item->id}}" class="btn btn-outline-dark waves-effect ex_change edit-shop"
+                                                            data-bs-toggle="modal" data-bs-target="#infoReservation" style="padding: 8px; margin: 5px;">
+                                                        {{__('detail')}}</button>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -95,7 +105,7 @@
                                 <div class="col-12 text-center">
                                     <label class="btn waves-effect background-dark-blue color-white cursor-pointer"
                                            tabindex="15" id="btn_cancel">{{__('close')}}</label>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#infoReservation">Show</button>
+{{--                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#infoReservation">Show</button>--}}
                                 </div>
                             </div>
                         </div>

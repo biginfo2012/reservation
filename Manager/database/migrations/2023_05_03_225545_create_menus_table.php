@@ -23,6 +23,7 @@ class CreateMenusTable extends Migration
             $table->string('require_time')->nullable();
             $table->tinyInteger('display')->default(1);
             $table->string('note')->nullable();
+            $table->dateTime('deleted_at')->nullable();
             $table->timestamps();
         });
     }

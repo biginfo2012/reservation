@@ -15,8 +15,8 @@
                                             <label for="date" class="col-sm-3 col-form-label-lg text-end"
                                                    style="padding-top: 10px">{{__('visit-date')}}</label>
                                             <div class="col-sm-9" style="padding-left: 0">
-                                                <input type="text" class="form-control flatpickr" id="date" name="date" placeholder="YYYY-MM-DD" required tabindex="1" data-index="1"
-                                                       value="{{date('Y-m-d')}}"/>
+                                                <input type="text" class="form-control flatpickr" id="date" name="date" placeholder="YYYY-MM-DD" required tabindex="1"
+                                                       data-index="1" value="{{date('Y-m-d')}}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -27,10 +27,11 @@
                                             <label for="shop" class="col-sm-3 col-form-label-lg text-end"
                                                    style="padding-top: 10px">{{__('shop-name')}}</label>
                                             <div class="col-sm-9" style="padding-left: 0">
-                                                <select class="form-select" id="shop" name="shop" tabindex="2" data-index="2">
+                                                <select class="form-select" id="shop" name="shop_id" tabindex="2" data-index="2">
                                                     <option value="" selected>{{__('all')}}</option>
-                                                    <option value="1">{{__('enable')}}</option>
-                                                    <option value="0">{{__('stop')}}</option>
+                                                    @foreach($shops as $shop)
+                                                        <option value="{{$shop->id}}">{{$shop->shop_name}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -71,5 +72,10 @@
         addEventListener('pageshow', (event) => {
             getTableData('{{route('client-table')}}');
         });
+        $(document).ready(function () {
+            $('#date').change(function () {
+                getTableData('{{route('client-table')}}');
+            })
+        })
     </script>
 </x-app-layout>

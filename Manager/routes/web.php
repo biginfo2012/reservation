@@ -29,6 +29,7 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('reservation-list', [ReservationController::class, 'index'])->name('reservation-list');
     Route::post('reservation-table', [ReservationController::class, 'reservationTable'])->name('reservation-table');
     Route::get('reservation-edit/{id}', [ReservationController::class, 'reservationEdit'])->name('reservation-edit');
+    Route::get('reservation-get/{id}', [ReservationController::class, 'reservationGet'])->name('reservation-get');
 
     Route::get('client-manage', [ClientController::class, 'index'])->name('client-manage');
     Route::post('client-table', [ClientController::class, 'clientTable'])->name('client-table');
@@ -49,6 +50,7 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('menu-manage', [MenuController::class, 'index'])->name('menu-manage');
 
     Route::get('my-page', [MyController::class, 'index'])->name('my-page');
+    Route::post('change-password', [MyController::class, 'changePassword'])->name('change-password');
 });
 
 require __DIR__.'/auth.php';

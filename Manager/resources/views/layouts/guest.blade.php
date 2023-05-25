@@ -70,7 +70,7 @@
 </div>
 <!-- END: Content-->
 <footer class="footer footer-static footer-light footer-gradient" style="color: white">
-    <p class="clearfix mb-0 d-flex"><span class="float-md-start d-block d-md-inline-block mt-25" style="margin: auto">{{__('footer-title')}}</span></p>
+    <p class="clearfix mb-0 d-flex"><a href="https://makidumespecialty.shop/" target="_blank" class="float-md-start d-block d-md-inline-block mt-25 color-white" style="margin: auto">{{__('footer-title')}}</a></p>
     <p class="clearfix mb-0 d-flex"><span class="float-md-start d-block d-md-inline-block mt-25" style="margin: auto">Copyright &copy; 2023 Manager, All rights Reserved</span></p>
 </footer>
 <!-- BEGIN: Vendor JS-->

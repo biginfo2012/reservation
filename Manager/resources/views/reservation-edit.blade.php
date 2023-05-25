@@ -22,7 +22,7 @@
                                                style="padding-right: 0">{{__('reservation')}}ID</label>
                                         <div class="col-sm-10" style="padding-left: 0">
                                             <input type="text" id="reservation-id" class="form-control" placeholder="" name="reservation_id"
-                                                   value="{{isset($user) ? $user->user_code : ""}}" tabindex="1" data-index="1"/>
+                                                   value="{{$data->reservation_code}}" tabindex="1" data-index="1"/>
                                         </div>
                                     </div>
                                 </div>
@@ -32,7 +32,7 @@
                                                style="padding-right: 0">{{__('shop-name')}}</label>
                                         <div class="col-sm-10" style="padding-left: 0">
                                             <input type="text" id="shop-name" class="form-control" name="shop_name"
-                                                   placeholder="" value="{{isset($user) ? $user->name : ''}}" required
+                                                   placeholder="" value="{{$data->shop->shop_name}}" required
                                                    tabindex="2" data-index="2"/>
                                         </div>
                                     </div>
@@ -43,7 +43,7 @@
                                                style="padding-right: 0">{{__('client-name')}}</label>
                                         <div class="col-sm-10" style="padding-left: 0">
                                             <input type="text" id="client-id" class="form-control" name="client_id"
-                                                   placeholder="" value="{{isset($user) ? $user->email : ''}}" required
+                                                   placeholder="" value="{{$data->client->last_name . $data->client->first_name}}" required
                                                    tabindex="3" data-index="3"/>
                                         </div>
                                     </div>
@@ -54,7 +54,7 @@
                                                style="padding-right: 0">{{__('sei-mei')}}</label>
                                         <div class="col-sm-10" style="padding-left: 0">
                                             <input type="text" id="sei-mei" class="form-control" name="sei_mei"
-                                                   placeholder="" {{isset($user) ? '' : 'required'}} minlength="8"
+                                                   placeholder="" value="{{$data->client->sei . $data->client->mei}}" minlength="8"
                                                    tabindex="4" data-index="4"/>
                                         </div>
                                     </div>
@@ -67,7 +67,7 @@
                                                style="padding-right: 0">{{__('phone-number')}}</label>
                                         <div class="col-sm-10" style="padding-left: 0">
                                             <input type="text" id="phone-number" class="form-control" name="phone_number"
-                                                   placeholder="" {{isset($user) ? '' : 'required'}}
+                                                   placeholder="" value="{{$data->client->phone}}"
                                                    tabindex="5" data-index="5"/>
                                         </div>
                                     </div>
@@ -78,7 +78,7 @@
                                                style="padding-right: 0">{{__('email')}}</label>
                                         <div class="col-sm-10" style="padding-left: 0">
                                             <input type="email" id="email" class="form-control" name="email"
-                                                   placeholder="" value="{{isset($user) ? $user->address : ''}}"
+                                                   placeholder="" value="{{$data->client->email}}"
                                                    required tabindex="6" data-index="6"/>
                                         </div>
                                     </div>
@@ -90,7 +90,7 @@
                                         <div class="col-sm-11" style="padding-left: 0">
                                             <textarea rows="3" id="reservation-menu" class="form-control" name="reservation_menu"
                                                       placeholder="" tabindex="7"
-                                                      data-index="7">{{isset($user) ? $user->remarks : ''}}</textarea>
+                                                      data-index="7">menu</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -100,7 +100,7 @@
                                                style="padding-right: 0">{{__('price')}}</label>
                                         <div class="col-sm-10" style="padding-left: 0">
                                             <input type="text" id="price" class="form-control" name="price"
-                                                   placeholder="" value="{{isset($user) ? $user->represent : ''}}"
+                                                   placeholder="" value="price"
                                                    required tabindex="8" data-index="8"/>
                                         </div>
                                     </div>
@@ -111,7 +111,7 @@
                                                style="padding-right: 0">{{__('require-time')}}</label>
                                         <div class="col-sm-10" style="padding-left: 0">
                                             <input type="text" id="require-time" class="form-control" name="time"
-                                                   placeholder="" value="{{isset($user) ? $user->charge : ''}}" required
+                                                   placeholder="" value="time" required
                                                    tabindex="9" data-index="9"/>
                                         </div>
                                     </div>
@@ -124,7 +124,7 @@
                                                style="padding-right: 0">{{__('gender')}}</label>
                                         <div class="col-sm-10" style="padding-left: 0">
                                             <input type="text" id="gender" class="form-control" name="gender"
-                                                   placeholder="" value="{{isset($user) ? $user->contact : ''}}"
+                                                   placeholder="" value="{{$data->client->gender == 1 ? __('female') : __('male')}}"
                                                    required tabindex="10" data-index="10"/>
                                         </div>
                                     </div>
@@ -135,7 +135,7 @@
                                                style="padding-right: 0">{{__('diagnosis')}}</label>
                                         <div class="col-sm-10" style="padding-left: 0">
                                             <input type="text" id="diagnosis" class="form-control" name="diagnosis"
-                                                   placeholder="" value="{{isset($user) ? $user->contact : ''}}"
+                                                   placeholder="" value="{{$data->client->is_first == 1 ? __('first') : __('twice')}}"
                                                    required tabindex="11" data-index="11"/>
                                         </div>
                                     </div>
@@ -147,7 +147,7 @@
                                         <div class="col-sm-12">
                                             <textarea rows="5" id="request" class="form-control" name="request"
                                                       placeholder="" tabindex="12"
-                                                      data-index="12">{{isset($user) ? $user->remarks : ''}}</textarea>
+                                                      data-index="12">{{$data->note}}</textarea>
                                         </div>
                                     </div>
                                 </div>
