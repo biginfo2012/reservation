@@ -90,7 +90,13 @@
                                         <div class="col-sm-11" style="padding-left: 0">
                                             <textarea rows="3" id="reservation-menu" class="form-control" name="reservation_menu"
                                                       placeholder="" tabindex="7"
-                                                      data-index="7">menu</textarea>
+                                                      data-index="7">@php
+                                                    $desc = "";
+                                                    foreach($data['menu'] as $reservation_menu) {
+                                                        $desc = $desc . $reservation_menu['menu']['description'] . "\n";
+                                                    }
+                                                    echo $desc
+                                                @endphp</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -100,7 +106,13 @@
                                                style="padding-right: 0">{{__('price')}}</label>
                                         <div class="col-sm-10" style="padding-left: 0">
                                             <input type="text" id="price" class="form-control" name="price"
-                                                   placeholder="" value="price"
+                                                   placeholder="" value="@php
+                                                        $price = 0;
+                                                        foreach($data['menu'] as $reservation_menu) {
+                                                            $price += $reservation_menu['menu']['price'];
+                                                        }
+                                                        echo $price
+                                                   @endphp"
                                                    required tabindex="8" data-index="8"/>
                                         </div>
                                     </div>
@@ -111,7 +123,13 @@
                                                style="padding-right: 0">{{__('require-time')}}</label>
                                         <div class="col-sm-10" style="padding-left: 0">
                                             <input type="text" id="require-time" class="form-control" name="time"
-                                                   placeholder="" value="time" required
+                                                   placeholder="" value="@php
+                                                        $time = 0;
+                                                        foreach($data['menu'] as $reservation_menu) {
+                                                            $time += $reservation_menu['menu']['require_time'];
+                                                        }
+                                                        echo $time
+                                                   @endphp" required
                                                    tabindex="9" data-index="9"/>
                                         </div>
                                     </div>

@@ -193,8 +193,8 @@
                                         id="save_shop">{{__('register')}}</button>
                                 <label class="btn waves-effect background-dark-blue color-white cursor-pointer me-1"
                                        tabindex="15" data-bs-dismiss="modal" aria-label="Close">{{__('close')}}</label>
-                                <button type="reset" class="btn btn-danger waves-effect waves-float waves-light me-1" style="display: none"
-                                        onclick="event.preventDefault(); deleteData($('#id').val(), '{{route('shop-delete')}}')">{{__('delete')}}</button>
+                                <button type="reset" class="btn btn-danger waves-effect waves-float waves-light me-1" id="btn_delete" style="display: none"
+                                        onclick="event.preventDefault(); deleteShop($('#id').val(), '{{route('shop-delete')}}')">{{__('delete')}}</button>
                             </div>
                         </div>
                     </form>
@@ -252,8 +252,9 @@
                         $('#represent-phone').val('')
                         $('#password').val('')
                         $('#password').attr('required', true)
-                        $('#shop-url').val('base_shop_reservation_url' + shop_code)
+                        $('#shop-url').val('http://localhost:8000/shop/reservation/' + shop_code)
                         $('#note').val('')
+                        $('#btn_delete').hide()
                     },
                 })
             })
@@ -306,8 +307,9 @@
             $('#login-id').val($(this).parent().find('input.email[type=hidden]').val())
             $('#password').val('')
             $('#password').removeAttr('required')
-            $('#shop-url').val('base_shop_reservation_url' + $(this).data('code'))
+            $('#shop-url').val('http://localhost:8000/shop/reservation/' + $(this).data('code'))
             $('#note').val($(this).parent().find('input.note[type=hidden]').val())
+            $('#btn_delete').show()
             $('#editShop').modal('toggle')
         })
         function deleteShop(id, url){
@@ -348,6 +350,7 @@
                                 }).then(function (result) {
                                     if (result.value) {
                                         getTableData('{{route('shop-table')}}')
+                                        $('#editShop').modal('hide')
                                     }})
                                 //toastr.success("成功しました。")
                             }

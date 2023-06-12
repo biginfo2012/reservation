@@ -14,10 +14,11 @@
     <tbody>
     @foreach($data as $index => $item)
         <tr>
-            <td class="p-0 border text-center align-middle">{{$index}}</td>
+            <td class="p-0 border text-center align-middle">{{$index+1}}</td>
             <td class="p-0 border text-left align-middle px-1">{{$item['last_name'] . $item['first_name']}}</td>
             <td class="p-0 border text-left align-middle px-1 text-ellipsis">{{$item['sei']}}</td>
             <td class="p-0 border text-left align-middle px-1">{{$item['mei']}}</td>
+            <td class="p-0 border text-left align-middle px-1">{{$item['phone']}}</td>
             <td class="p-0 border text-left align-middle px-1">{{$item['email']}}</td>
             <td class="p-0 border text-left align-middle px-1">{{$item['gender'] == 1 ? __('female') : __('male')}}</td>
             <td class="p-0 border text-center align-middle">

@@ -82,4 +82,9 @@ class ReservationController extends Controller
         $data = Reservation::with('shop', 'client', 'menu')->find($id);
         return view('reservation-edit', compact('data'));
     }
+    public function reservationGet(Request $request){
+        $id = $request->id;
+        $data = Reservation::with('shop', 'client', 'menu')->find($id);
+        return response()->json(['status' => true, 'data' => $data]);
+    }
 }

@@ -10,11 +10,11 @@
                             <form class="dt_adv_search" method="POST" id="search_form">
                                 @csrf
                                 <div class="row g-1 mb-md-0">
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="mb-1 row">
-                                            <label for="date" class="col-sm-3 col-form-label-lg text-end"
+                                            <label for="date" class="col-sm-4 col-form-label-lg text-end"
                                                    style="padding-top: 10px">{{__('visit-date')}}</label>
-                                            <div class="col-sm-9" style="padding-left: 0">
+                                            <div class="col-sm-8" style="padding-left: 0">
                                                 <input type="text" class="form-control flatpickr" id="date" name="date" placeholder="YYYY-MM-DD" required tabindex="1"
                                                        data-index="1" value="{{date('Y-m-d')}}"/>
                                             </div>
@@ -22,11 +22,11 @@
                                     </div>
                                 </div>
                                 <div class="row g-1 mb-md-0">
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="mb-1 row">
-                                            <label for="shop" class="col-sm-3 col-form-label-lg text-end"
+                                            <label for="shop" class="col-sm-4 col-form-label-lg text-end"
                                                    style="padding-top: 10px">{{__('shop-name')}}</label>
-                                            <div class="col-sm-9" style="padding-left: 0">
+                                            <div class="col-sm-8" style="padding-left: 0">
                                                 <select class="form-select" id="shop" name="shop_id" tabindex="2" data-index="2">
                                                     <option value="" selected>{{__('all')}}</option>
                                                     @foreach($shops as $shop)
@@ -50,9 +50,9 @@
                                                 onclick="event.preventDefault();getTableData('{{route('client-table')}}')">{{__('search')}}
                                         </button>
                                     </div>
-                                    <div class="col-md-2 text-end">
+                                    <div class="col-md-3 text-end">
                                         <button class="btn mr-2 background-dark-blue color-white" id="client_export_csv"
-                                                onclick="event.preventDefault();exportFile('{{route('client-export-csv')}}', 'csv', {{__('client-manage')}})">
+                                                onclick="event.preventDefault();exportFile('{{route('client-export-csv')}}', 'csv', '{{__('client-manage')}}')">
                                             <i data-feather='download'></i> {{__('csv-down')}}
                                         </button>
                                     </div>

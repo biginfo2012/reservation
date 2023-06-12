@@ -47,16 +47,22 @@
                                     </div>
                                 </div>
                                 <div class="col-1">
+                                    <div class="text-center">{{$lastWeekCnt . __('man')}}</div>
                                 </div>
                                 <div class="col-1">
+                                    <div class="text-center">{{$thisWeekCnt . __('man')}}</div>
                                 </div>
                                 <div class="col-1">
+                                    <div class="text-center">{{$nextWeekCnt . __('man')}}</div>
                                 </div>
                                 <div class="col-2">
+                                    <div class="text-center">{{$lastMonthCnt . __('man')}}</div>
                                 </div>
                                 <div class="col-3">
+                                    <div class="text-center">{{$thisMonthCnt . __('man')}}</div>
                                 </div>
                                 <div class="col-2">
+                                    <div class="text-center">{{$nextMonthCnt . __('man')}}</div>
                                 </div>
                             </div>
                             <div class="row">
@@ -73,16 +79,22 @@
                                     </div>
                                 </div>
                                 <div class="col-1">
+                                    <div class="text-center">{{$lastWeekPrice . __('en')}}</div>
                                 </div>
                                 <div class="col-1">
+                                    <div class="text-center">{{$thisWeekPrice . __('en')}}</div>
                                 </div>
                                 <div class="col-1">
+                                    <div class="text-center">{{$nextWeekPrice . __('en')}}</div>
                                 </div>
                                 <div class="col-2">
+                                    <div class="text-center">{{$lastMonthPrice . __('en')}}</div>
                                 </div>
                                 <div class="col-3">
+                                    <div class="text-center">{{$thisMonthPrice . __('en')}}</div>
                                 </div>
                                 <div class="col-2">
+                                    <div class="text-center">{{$nextMonthPrice . __('en')}}</div>
                                 </div>
                             </div>
                         </div>
@@ -114,7 +126,15 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-
+                                        @foreach($table_data as $item)
+                                            <tr>
+                                                <td class="p-0 border text-center align-middle"><a href="{{route('reservation-list')}}/?shop_id={{$item['shopId']}}">{{$item['shop_name']}}</a></td>
+                                                <td class="p-0 border text-end align-middle px-1">{{$item['client_cnt'] . __('man')}}</td>
+                                                <td class="p-0 border text-end align-middle px-1">{{$item['first_cnt'] . __('man')}}</td>
+                                                <td class="p-0 border text-end align-middle px-1">{{$item['twice_cnt'] . __('man')}}</td>
+                                                <td class="p-0 border text-end align-middle px-1">{{$item['price'] . __('en')}}</td>
+                                            </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div>

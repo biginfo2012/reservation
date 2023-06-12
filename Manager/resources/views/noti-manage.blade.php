@@ -111,8 +111,8 @@
                                         id="save_noti">{{__('register')}}</button>
                                 <label class="btn waves-effect background-dark-blue color-white cursor-pointer me-1"
                                        tabindex="15" data-bs-dismiss="modal" aria-label="Close">{{__('close')}}</label>
-                                <button type="reset" class="btn btn-danger waves-effect waves-float waves-light me-1" style="display: none"
-                                        onclick="event.preventDefault(); deleteData($('#id').val(), '{{route('noti-delete')}}')">{{__('delete')}}</button>
+                                <button type="reset" class="btn btn-danger waves-effect waves-float waves-light me-1" style="display: none" id="btn_delete"
+                                        onclick="event.preventDefault(); deleteDataNoti($('#id').val(), '{{route('noti-delete')}}')">{{__('delete')}}</button>
                             </div>
                         </div>
                     </form>
@@ -145,12 +145,13 @@
                 "hideMethod": "fadeOut"
             }
             $('#create_noti').click(function () {
-                $('#save_noti')[0].disabled = false
                 $('#id').val("")
                 $('#title').val("")
-                $('input:radio[name="status"]').filter('[value="2"]').attr('checked', true)
+                $('input:radio#now-publish').filter('[value="2"]').attr('checked', true)
                 $('label.publish-status').text('{{__('now-publish')}}')
                 $('#publish_time').val("")
+                $('#save_noti').show()
+                $('#btn_delete').hide()
                 $(".summernote-noti").summernote({
                     height: 300,
                     minHeight: 300,
@@ -215,17 +216,22 @@
         $(document).on('click', '.edit-noti', function () {
             $('#id').val($(this).data('id'))
             let status = $(this).data('status')
+            console.log(status)
             if(status == 2){
-                $('#save_noti')[0].disabled = true
+                $('#save_noti').hide()
+                $('#btn_delete').hide()
                 $('label.publish-status').text('{{__('published')}}')
+                $('input:radio#now-publish').attr('checked', true)
             }
             else{
-                $('#save_noti')[0].disabled = false
+                $('#save_noti').show()
+                $('#btn_delete').show()
                 $('label.publish-status').text('{{__('now-publish')}}')
+                $('input:radio[name="status"]').filter('[value=' + status + ']').attr('checked', true)
             }
             let title = $(this).parent().find('input.title[type=hidden]').val()
             $('#title').val(title)
-            $('input:radio[name="status"]').filter('[value=' + status + ']').attr('checked', true)
+
             let publish_time = $(this).parent().find('input.publish_time[type=hidden]').val()
             $('#publish_time').val(publish_time)
             let content = $(this).parent().find('input.content[type=hidden]').val()
@@ -281,6 +287,7 @@
                                 }).then(function (result) {
                                     if (result.value) {
                                         getTableData('{{route('noti-table')}}')
+                                        $('#editNotification').modal('hide')
                                     }})
                                 //toastr.success("成功しました。")
                             }

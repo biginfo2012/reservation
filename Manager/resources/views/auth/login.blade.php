@@ -122,8 +122,7 @@
         <div class="auth-inner row m-0">
             <!-- Login-->
             <div class="d-flex col-lg-12 align-items-center auth-bg px-2 p-lg-5">
-                <div class="col-6 col-sm-8 col-md-6 col-lg-5 px-xl-2 mx-auto">
-
+                <div class="col-6 col-sm-6 col-md-4 col-lg-3 px-xl-2 mx-auto">
                     <h2 class="card-title fw-bold mb-1 text-center">{{__('manager-title')}}</h2>
                     <h3 class="card-text mb-2 text-center" id="current_time"></h3>
                     <form class="auth-login-form mt-2" id="login_form" action="{{ route('login') }}" method="POST" style="margin-top: 50px !important;">

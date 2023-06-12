@@ -64,11 +64,20 @@
     <!--end::Content-->
     <script>
         addEventListener('pageshow', (event) => {
-            getTableData('{{route('reservation-table')}}');
+            getTableData('{{route('reservation-table')}}')
         });
         $(document).ready(function () {
+            let queryString = window.location.search
+            let urlParams = new URLSearchParams(queryString)
+            if(urlParams.has('shop_id')){
+                let shop_id = urlParams.get('shop_id')
+                console.log(shop_id)
+                $('#shop').val(shop_id).change()
+                getTableData('{{route('reservation-table')}}')
+            }
+
             $('#date').change(function () {
-                getTableData('{{route('reservation-table')}}');
+                getTableData('{{route('reservation-table')}}')
             })
         })
     </script>

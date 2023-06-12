@@ -12,6 +12,6 @@ class Client extends Model
         'last_name', 'first_name', 'sei', 'mei', 'phone', 'email', 'gender', 'is_first', 'note'
     ];
     public function reservation(){
-        return $this->hasMany(Reservation::class, 'client_id', 'id');
+        return $this->hasMany(Reservation::class, 'client_id', 'id')->with('client');
     }
 }

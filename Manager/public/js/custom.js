@@ -62,6 +62,65 @@ function getTableData(url) {
     )
 
 }
+function getTableDataReservation(url) {
+    var paramObj = new FormData($('#search_form')[0])
+    $.ajax({
+            url: url,
+            type: 'post',
+            data: paramObj,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                $('#table-part').html(response)
+                var t = $('#table')
+                t.DataTable({
+
+                    dom: "<'row'<'col-sm-12'tr>>\n\t\t\t<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>",
+                    lengthMenu: [20, 50, 100],
+                    pageLength: 20,
+                    bAutoWidth: false,
+                    aoColumns : [
+                        { sWidth: '15%' },
+                        { sWidth: '10%' },
+                        { sWidth: '10%' },
+                        { sWidth: '10%' },
+                        { sWidth: '15%' },
+                        { sWidth: '5%' },
+                        { sWidth: '10%' },
+                        { sWidth: '5%' },
+                        { sWidth: '15%' },
+                        { sWidth: '5%' }
+                    ],
+                    language: {
+                        "decimal": "",
+                        "emptyTable": "現在ありません",
+                        "info": "_TOTAL_中_START_から_END_を表示",
+                        "infoEmpty": "0~0の0を表示。",
+                        "infoFiltered": "(filtered from _MAX_ total entries)",
+                        "infoPostFix": "",
+                        "thousands": ",",
+                        "lengthMenu": " _MENU_ ",
+                        "loadingRecords": "ロード中...",
+                        "processing": "処理中...",
+                        "search": "検索:",
+                        "zeroRecords": "一致する検索資料がありません。",
+                        "paginate": {
+                            "first": "初めに",
+                            "last": "最後",
+                            "next": "次へ",
+                            "previous": "前へ"
+                        },
+                    },
+                })
+            },
+            error: function () {
+
+            }
+        }
+
+    )
+
+}
 function exportFile(url, type, account){
     var paramObj = new FormData($("#search_form")[0])
     var today = new Date()

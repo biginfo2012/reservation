@@ -21,7 +21,7 @@
                 <input type="hidden" value="{{$item['content']}}" class="content">
                 <button class="btn btn-outline-dark waves-effect ex_change edit-noti" style="padding: 8px; margin: 5px;"
                         data-id="{{$item['id']}}" data-status="{{$item['status']}}">{{__('edit')}}</button>
-                <button class="btn btn-outline-dark waves-effect ex_change delete-noti" style="padding: 8px; margin: 5px;" data-id="{{$item['id']}}">{{__('delete')}}</button>
+                <button class="btn btn-outline-dark waves-effect ex_change delete-noti" style="padding: 8px; margin: 5px;" data-id="{{$item['id']}}" {{$item['status'] == 2 ? 'disabled' : ''}}>{{__('delete')}}</button>
             </td>
         </tr>
     @endforeach

@@ -67,7 +67,7 @@
                             <div class="mb-1 col-md-12">
                                 <div class="mb-1 row">
                                     <label for="current_password" class="col-sm-4 col-form-label-lg"
-                                           style="padding-right: 0">{{__('current-password')}}</label>
+                                           style="padding-right: 0"><span class="color-red-tmp" style="margin-right: 2px">*</span>{{__('current-password')}}</label>
                                     <div class="col-sm-8" style="padding-left: 0">
                                         <input type="password" id="current_password" class="form-control" placeholder="" name="current_password" required
                                                value="" tabindex="1" data-index="1"/>
@@ -77,7 +77,7 @@
                             <div class="mb-1 col-md-12">
                                 <div class="mb-1 row">
                                     <label for="new_password" class="col-sm-4 col-form-label-lg"
-                                           style="padding-right: 0">{{__('new-password')}}</label>
+                                           style="padding-right: 0"><span class="color-red-tmp" style="margin-right: 2px">*</span>{{__('new-password')}}</label>
                                     <div class="col-sm-8" style="padding-left: 0">
                                         <input type="password" id="new_password" class="form-control" name="new_password"
                                                placeholder="" value="" required minlength="8"
@@ -88,7 +88,7 @@
                             <div class="mb-1 col-md-12">
                                 <div class="mb-1 row">
                                     <label for="password_confirm" class="col-sm-4 col-form-label-lg"
-                                           style="padding-right: 0">{{__('password-confirm')}}</label>
+                                           style="padding-right: 0"><span class="color-red-tmp" style="margin-right: 2px">*</span>{{__('password-confirm')}}</label>
                                     <div class="col-sm-8" style="padding-left: 0">
                                         <input type="password" id="password_confirm" class="form-control" name="password_confirm"
                                                placeholder="" value="" required minlength="8"

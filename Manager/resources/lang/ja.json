@@ -92,5 +92,12 @@
     "first": "初診",
     "twice": "再診",
     "male": "男性",
-    "female": "女性"
+    "female": "女性",
+    "menu-name": "メニュー名",
+    "description": "説明",
+    "display": "表示有無",
+    "off": "非表示",
+    "on": "表示",
+    "man": "人",
+    "en": "¥"
 }

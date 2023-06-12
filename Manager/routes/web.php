@@ -29,7 +29,7 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('reservation-list', [ReservationController::class, 'index'])->name('reservation-list');
     Route::post('reservation-table', [ReservationController::class, 'reservationTable'])->name('reservation-table');
     Route::get('reservation-edit/{id}', [ReservationController::class, 'reservationEdit'])->name('reservation-edit');
-    Route::get('reservation-get/{id}', [ReservationController::class, 'reservationGet'])->name('reservation-get');
+    Route::post('reservation-get', [ReservationController::class, 'reservationGet'])->name('reservation-get');
 
     Route::get('client-manage', [ClientController::class, 'index'])->name('client-manage');
     Route::post('client-table', [ClientController::class, 'clientTable'])->name('client-table');
@@ -48,6 +48,11 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('shop-create-code', [ShopController::class, 'shopCreateCode'])->name('shop-create-code');
 
     Route::get('menu-manage', [MenuController::class, 'index'])->name('menu-manage');
+    Route::post('menu-table', [MenuController::class, 'menuTable'])->name('menu-table');
+    Route::get('menu-create-code', [MenuController::class, 'menuCreateCode'])->name('menu-create-code');
+    Route::post('menu-change-display', [MenuController::class, 'menuChangeDisplay'])->name('menu-change-display');
+    Route::post('menu-save', [MenuController::class, 'menuSave'])->name('menu-save');
+    Route::post('menu-delete', [MenuController::class, 'menuDelete'])->name('menu-delete');
 
     Route::get('my-page', [MyController::class, 'index'])->name('my-page');
     Route::post('change-password', [MyController::class, 'changePassword'])->name('change-password');
