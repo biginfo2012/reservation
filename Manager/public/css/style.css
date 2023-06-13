@@ -1,3 +1,6 @@
+body {
+    font-family: sans-serif !important;
+}
 .dark-blue{
     color: #2f75b5;
 }
@@ -31,10 +34,10 @@
 
 body, tr, .form-control, .form-select{
     color: black !important;
-    font-size: 15px;
+    /*font-size: 15px;*/
 }
 tr, th, .col-form-label-lg{
-    font-size: 15px !important;
+    /*font-size: 15px !important;*/
 }
 div.dataTables_wrapper .dataTables_info{
     color: black;
@@ -42,3 +45,18 @@ div.dataTables_wrapper .dataTables_info{
 .color-red-tmp{
     color: red !important;
 }
+html .content.app-content{
+    padding: 4.45rem 0 0 0 !important;
+}
+.container, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl{
+    max-width: 100% !important;
+}
+.pat-5{
+    padding-top: 5px;
+}
+.pat-7{
+    padding-top: 7px;
+    margin-left: 10px;
+    margin-right: 5px;
+}
+

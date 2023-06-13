@@ -121,7 +121,7 @@
                     <div class="text-center mt-1">
                         <h3>{{__('reservation') . __('detail')}}</h3>
                     </div>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+{{--                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--}}
                 </div>
                 <div class="modal-body pb-2 px-3 pt-0">
                     <div class="row">
@@ -256,14 +256,14 @@
             var t = $('#table');
             t.DataTable({
                 responsive: !0,
-                dom: "<'row'<'col-sm-12'tr>>\n\t\t\t<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>",
+                dom: "<'row'<'col-sm-12 col-md-5 d-flex'<'pat-5'p><'pat-7'i>l>>\n\t\t\t<'row'<'col-sm-12'tr>>",
                 lengthMenu: [20, 50, 100],
                 pageLength: 20,
                 language: {
                     "decimal": "",
                     "emptyTable": "現在ありません",
-                    "info": "_TOTAL_中_START_から_END_を表示",
-                    "infoEmpty": "0~0の0を表示。",
+                    "info": "_START_~_END_/全_TOTAL_件",
+                    "infoEmpty": "0~0/全0件",
                     "infoFiltered": "(filtered from _MAX_ total entries)",
                     "infoPostFix": "",
                     "thousands": ",",

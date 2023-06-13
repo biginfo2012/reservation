@@ -75,7 +75,7 @@
     "register": "登録",
     "shop": "店舗",
     "post-code": "郵便番号",
-    "no-half": "ハーフなし",
+    "no-half": "ハイフン無し",
     "address": "住所",
     "office-number": "ビル・部屋番号",
     "phone": "電話番号",
@@ -99,5 +99,13 @@
     "off": "非表示",
     "on": "表示",
     "man": "人",
-    "en": "¥"
+    "en": "¥",
+    "represent-phone": "代表者連絡先",
+    "please-input-menu": "メニュー名、金額を入力してください",
+    "min": "分",
+    "en-char": "円",
+    "show-over": "「～」を表示する",
+    "show-ask": "要問合せを表示",
+    "over": "～",
+    "ask": "要問合せ"
 }

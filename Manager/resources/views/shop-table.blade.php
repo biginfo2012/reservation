@@ -7,7 +7,7 @@
         <th class="text-center">{{__('phone')}}</th>
         <th class="text-center">{{__('email')}}</th>
         <th class="text-center">{{__('represent')}}</th>
-        <th class="text-center">{{__('phone')}}</th>
+        <th class="text-center">{{__('represent-phone')}}</th>
         <th class="text-center">{{__('action')}}</th>
     </tr>
     </thead>

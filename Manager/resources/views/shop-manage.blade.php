@@ -47,7 +47,7 @@
                     <div class="text-center mt-1">
                         <h3>{{__('shop')}}</h3>
                     </div>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+{{--                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--}}
                 </div>
                 <div class="modal-body pb-2 px-3 pt-0">
                     <form class="form" id="save_form">
@@ -80,9 +80,9 @@
                             <div class="col-6">
                                 <div class="row">
                                     <label for="post-code" class="col-sm-4 col-form-label-lg pt-0 pe-0 pb-0">
-                                        {{__('post-code')}}<br><span class="font-small-2">{{__('no-half')}}</span></label>
+                                        {{__('post-code')}}<br><span class="font-small-1">{{__('no-half')}}</span></label>
                                     <div class="col-sm-8" style="padding-left: 0">
-                                        <input type="text" id="post-code" class="form-control" name="post_code"
+                                        <input type="number" id="post-code" class="form-control" name="post_code"
                                                placeholder="" required/>
                                     </div>
                                 </div>
@@ -112,9 +112,9 @@
                             <div class="col-6">
                                 <div class="row">
                                     <label for="phone" class="col-sm-4 col-form-label-lg pt-0 pe-0">
-                                        {{__('phone')}}<br><span class="font-small-2">{{__('no-half')}}</span></label>
+                                        {{__('phone')}}<br><span class="font-small-1">{{__('no-half')}}</span></label>
                                     <div class="col-sm-8" style="padding-left: 0">
-                                        <input type="text" id="phone" class="form-control" name="phone"
+                                        <input type="number" id="phone" class="form-control" name="phone"
                                                placeholder="" required/>
                                     </div>
                                 </div>
@@ -142,9 +142,9 @@
                             <div class="col-6">
                                 <div class="row">
                                     <label for="represent-phone" class="col-sm-4 col-form-label-lg pt-0 pe-0">
-                                        {{__('phone')}}<br><span class="font-small-2">{{__('no-half')}}</span></label>
+                                        {{__('represent-phone')}}<br><span class="font-small-1">{{__('no-half')}}</span></label>
                                     <div class="col-sm-8" style="padding-left: 0">
-                                        <input type="text" id="represent-phone" class="form-control" name="represent_phone"
+                                        <input type="number" id="represent-phone" class="form-control" name="represent_phone"
                                                placeholder="" required/>
                                     </div>
                                 </div>

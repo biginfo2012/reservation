@@ -15,22 +15,22 @@
 
                                 </div>
                                 <div class="col-1">
-                                    <p class="text-center">{{__('prev-week')}}</p>
+                                    <p class="text-start">{{__('prev-week')}}</p>
                                 </div>
                                 <div class="col-1">
-                                    <p class="text-center">{{__('this-week')}}</p>
+                                    <p class="text-start">{{__('this-week')}}</p>
                                 </div>
                                 <div class="col-1">
-                                    <p class="text-center">{{__('next-week')}}</p>
+                                    <p class="text-start">{{__('next-week')}}</p>
                                 </div>
                                 <div class="col-2">
-                                    <p class="text-center">{{__('prev-month')}}</p>
+                                    <p class="text-start">{{__('prev-month')}}</p>
                                 </div>
                                 <div class="col-3">
-                                    <p class="text-center">{{__('this-month')}}</p>
+                                    <p class="text-start">{{__('this-month')}}</p>
                                 </div>
                                 <div class="col-2">
-                                    <p class="text-center">{{__('next-month')}}</p>
+                                    <p class="text-start">{{__('next-month')}}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -47,22 +47,22 @@
                                     </div>
                                 </div>
                                 <div class="col-1">
-                                    <div class="text-center">{{$lastWeekCnt . __('man')}}</div>
+                                    <div class="text-start">{{$lastWeekCnt . __('man')}}</div>
                                 </div>
                                 <div class="col-1">
-                                    <div class="text-center">{{$thisWeekCnt . __('man')}}</div>
+                                    <div class="text-start">{{$thisWeekCnt . __('man')}}</div>
                                 </div>
                                 <div class="col-1">
-                                    <div class="text-center">{{$nextWeekCnt . __('man')}}</div>
+                                    <div class="text-start">{{$nextWeekCnt . __('man')}}</div>
                                 </div>
                                 <div class="col-2">
-                                    <div class="text-center">{{$lastMonthCnt . __('man')}}</div>
+                                    <div class="text-start">{{$lastMonthCnt . __('man')}}</div>
                                 </div>
                                 <div class="col-3">
-                                    <div class="text-center">{{$thisMonthCnt . __('man')}}</div>
+                                    <div class="text-start">{{$thisMonthCnt . __('man')}}</div>
                                 </div>
                                 <div class="col-2">
-                                    <div class="text-center">{{$nextMonthCnt . __('man')}}</div>
+                                    <div class="text-start">{{$nextMonthCnt . __('man')}}</div>
                                 </div>
                             </div>
                             <div class="row">
@@ -79,22 +79,22 @@
                                     </div>
                                 </div>
                                 <div class="col-1">
-                                    <div class="text-center">{{$lastWeekPrice . __('en')}}</div>
+                                    <div class="text-start">{{__('en') . number_format($lastWeekPrice) }}</div>
                                 </div>
                                 <div class="col-1">
-                                    <div class="text-center">{{$thisWeekPrice . __('en')}}</div>
+                                    <div class="text-start">{{__('en') . number_format($thisWeekPrice) }}</div>
                                 </div>
                                 <div class="col-1">
-                                    <div class="text-center">{{$nextWeekPrice . __('en')}}</div>
+                                    <div class="text-start">{{__('en') . number_format($nextWeekPrice) }}</div>
                                 </div>
                                 <div class="col-2">
-                                    <div class="text-center">{{$lastMonthPrice . __('en')}}</div>
+                                    <div class="text-start">{{__('en') . number_format($lastMonthPrice) }}</div>
                                 </div>
                                 <div class="col-3">
-                                    <div class="text-center">{{$thisMonthPrice . __('en')}}</div>
+                                    <div class="text-start">{{__('en') . number_format($thisMonthPrice) }}</div>
                                 </div>
                                 <div class="col-2">
-                                    <div class="text-center">{{$nextMonthPrice . __('en')}}</div>
+                                    <div class="text-start">{{__('en') . number_format($nextMonthPrice) }}</div>
                                 </div>
                             </div>
                         </div>
@@ -128,11 +128,11 @@
                                         <tbody>
                                         @foreach($table_data as $item)
                                             <tr>
-                                                <td class="p-0 border text-center align-middle"><a href="{{route('reservation-list')}}/?shop_id={{$item['shopId']}}">{{$item['shop_name']}}</a></td>
-                                                <td class="p-0 border text-end align-middle px-1">{{$item['client_cnt'] . __('man')}}</td>
-                                                <td class="p-0 border text-end align-middle px-1">{{$item['first_cnt'] . __('man')}}</td>
-                                                <td class="p-0 border text-end align-middle px-1">{{$item['twice_cnt'] . __('man')}}</td>
-                                                <td class="p-0 border text-end align-middle px-1">{{$item['price'] . __('en')}}</td>
+                                                <td class="p-0 border text-start align-middle px-1"><a href="{{route('reservation-list')}}/?shop_id={{$item['shopId']}}">{{$item['shop_name']}}</a></td>
+                                                <td class="p-0 border text-start align-middle px-1">{{$item['client_cnt'] . __('man')}}</td>
+                                                <td class="p-0 border text-start align-middle px-1">{{$item['first_cnt'] . __('man')}}</td>
+                                                <td class="p-0 border text-start align-middle px-1">{{$item['twice_cnt'] . __('man')}}</td>
+                                                <td class="p-0 border text-start align-middle px-1">{{__('en') . number_format($item['price'])}}</td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -151,14 +151,14 @@
             var t = $('#table');
             t.DataTable({
                 responsive: !0,
-                dom: "<'row'<'col-sm-12'tr>>\n\t\t\t<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>",
+                dom: "<'row'<'col-sm-12 col-md-5 d-flex'<'pat-5'p><'pat-7'i>l>>\n\t\t\t<'row'<'col-sm-12'tr>>",
                 lengthMenu: [20, 50, 100],
                 pageLength: 20,
                 language: {
                     "decimal": "",
                     "emptyTable": "現在ありません",
-                    "info": "_TOTAL_中_START_から_END_を表示",
-                    "infoEmpty": "0~0の0を表示。",
+                    "info": "_START_~_END_/全_TOTAL_件",
+                    "infoEmpty": "0~0/全0件",
                     "infoFiltered": "(filtered from _MAX_ total entries)",
                     "infoPostFix": "",
                     "thousands": ",",

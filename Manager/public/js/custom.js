@@ -29,14 +29,14 @@ function getTableData(url) {
                 var t = $('#table')
                 t.DataTable({
                     responsive: !0,
-                    dom: "<'row'<'col-sm-12'tr>>\n\t\t\t<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>",
+                    dom: "<'row'<'col-sm-12 col-md-5 d-flex'<'pat-5'p><'pat-7'i>l>>\n\t\t\t<'row'<'col-sm-12'tr>>",
                     lengthMenu: [20, 50, 100],
                     pageLength: 20,
                     language: {
                         "decimal": "",
                         "emptyTable": "現在ありません",
-                        "info": "_TOTAL_中_START_から_END_を表示",
-                        "infoEmpty": "0~0の0を表示。",
+                        "info": "_START_~_END_/全_TOTAL_件",
+                        "infoEmpty": "0~0/全0件",
                         "infoFiltered": "(filtered from _MAX_ total entries)",
                         "infoPostFix": "",
                         "thousands": ",",
@@ -52,7 +52,7 @@ function getTableData(url) {
                             "previous": "前へ"
                         },
                     },
-                })
+                });
             },
             error: function () {
 
@@ -74,8 +74,7 @@ function getTableDataReservation(url) {
                 $('#table-part').html(response)
                 var t = $('#table')
                 t.DataTable({
-
-                    dom: "<'row'<'col-sm-12'tr>>\n\t\t\t<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>",
+                    dom: "<'row'<'col-sm-12 col-md-5 d-flex'<'pat-5'p><'pat-7'i>l>>\n\t\t\t<'row'<'col-sm-12'tr>>",
                     lengthMenu: [20, 50, 100],
                     pageLength: 20,
                     bAutoWidth: false,
@@ -94,8 +93,8 @@ function getTableDataReservation(url) {
                     language: {
                         "decimal": "",
                         "emptyTable": "現在ありません",
-                        "info": "_TOTAL_中_START_から_END_を表示",
-                        "infoEmpty": "0~0の0を表示。",
+                        "info": "_START_~_END_/全_TOTAL_件",
+                        "infoEmpty": "0~0/全0件",
                         "infoFiltered": "(filtered from _MAX_ total entries)",
                         "infoPostFix": "",
                         "thousands": ",",

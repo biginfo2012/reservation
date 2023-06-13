@@ -11,7 +11,7 @@
     <tbody>
     @foreach($data as $index => $item)
         <tr>
-            <td class="p-0 border text-center align-middle">{{$item['id']}}</td>
+            <td class="p-0 border text-end align-middle px-1">{{$item['id']}}</td>
             <td class="p-0 border text-center align-middle">{{isset($item['publish_time']) ? date('Y/m/d H:i', strtotime($item['publish_time'])) : ""}}</td>
             <td class="p-0 border text-left align-middle px-1">{{$item['title']}}</td>
             <td class="p-0 border text-center align-middle">{{$item['status'] == 0 ? __('draft') : ($item['status'] == 1 ? __('stand') : __('published'))}}</td>

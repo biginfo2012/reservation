@@ -35,7 +35,7 @@
                     foreach($item['menu'] as $reservation_menu) {
                         $price += $reservation_menu['menu']['price'];
                     }
-                    echo $price
+                    echo number_format($price)
                 @endphp
             </td>
             <td class="p-0 border text-left align-middle px-1 whitespace-nowrap overflow-hidden"

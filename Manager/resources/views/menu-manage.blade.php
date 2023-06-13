@@ -14,7 +14,7 @@
                                         <div class="mb-1 row">
                                             <div class="col-sm-12">
                                                 <input type="text" class="form-control" id="keyword" name="keyword" tabindex="3" data-index="3"
-                                                       placeholder="{{__('please-input-name-phone-mail')}}">
+                                                       placeholder="{{__('please-input-menu')}}">
                                             </div>
                                         </div>
                                     </div>
@@ -47,7 +47,7 @@
                     <div class="text-center mt-1">
                         <h3>{{__('menu')}}</h3>
                     </div>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+{{--                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--}}
                 </div>
                 <div class="modal-body pb-2 px-3 pt-0">
                     <form class="form" id="save_form">
@@ -77,7 +77,7 @@
                             </div>
                         </div>
                         <div class="mb-1 row">
-                            <label for="description" class="col-sm-2 col-form-label-lg"
+                            <label for="description" class="col-sm-2 col-form-label-lg mt-0 mb-auto"
                                    style="padding-right: 0">{{__('description')}} (100{{__('char')}})</label>
                             <div class="col-sm-10 ps-0">
                                 <textarea rows="5" id="description" class="form-control" name="description" placeholder=""></textarea>
@@ -86,11 +86,19 @@
                         <div class="row mb-1">
                             <div class="col-6">
                                 <div class="row">
-                                    <label for="price" class="col-sm-4 col-form-label-lg pe-0">
+                                    <label for="price" class="col-sm-4 col-form-label-lg pe-0 mt-0 mb-auto">
                                         {{__('price')}}</label>
                                     <div class="col-sm-8" style="padding-left: 0">
                                         <input type="text" id="price" class="form-control" name="price"
                                                placeholder="" required/>
+                                        <div class="form-check form-check-inline" style="padding-top: 5px">
+                                            <input class="form-check-input" type="checkbox" id="over" name="over" value="checked"/>
+                                            <label class="form-check-label" for="over">{{__('show-over')}}</label>
+                                        </div>
+                                        <div class="form-check form-check-inline" style="padding-top: 5px">
+                                            <input class="form-check-input" type="checkbox" id="ask" name="ask" value="checked"/>
+                                            <label class="form-check-label" for="ask">{{__('show-ask')}}</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -108,7 +116,7 @@
                                 <div class="row">
                                     <label class="col-sm-4 col-form-label-lg pe-0">
                                         {{__('display')}}</label>
-                                    <div class="col-sm-8 d-flex" style="padding-left: 0">
+                                    <div class="col-sm-8 d-flex" style="padding-left: 0; padding-top: 7px">
                                         <div class="form-check me-2" id="now_publish_part">
                                             <input type="radio" id="display_on" name="display" class="form-check-input" required checked value="1"/>
                                             <label class="form-check-label publish-status" for="display_on">{{__('on')}}</label>
@@ -190,6 +198,8 @@
                         $('input:radio[name="display"]').filter('[value="1"]').attr('checked', true)
                         $('#note').val('')
                         $('#btn_delete').hide();
+                        $('#over').prop('checked', false)
+                        $('#ask').prop('checked', false)
                     },
                 })
             })
@@ -262,6 +272,21 @@
             $('#require_time').val($(this).parent().find('input.require_time[type=hidden]').val())
             $('input:radio[name="display"]').filter('[value=' + display + ']').attr('checked', true)
             $('#note').val($(this).parent().find('input.note[type=hidden]').val())
+            let over = $(this).parent().find('input.over[type=hidden]').val()
+            if(over == 1) {
+                $('#over').prop('checked', true)
+            }
+            else{
+                $('#over').prop('checked', false)
+            }
+            let ask = $(this).parent().find('input.ask[type=hidden]').val()
+            if(ask == 1) {
+                $('#ask').prop('checked', true)
+            }
+            else{
+                $('#ask').prop('checked', false)
+            }
+
             $('#btn_delete').show();
             $('#editMenu').modal('toggle')
         })

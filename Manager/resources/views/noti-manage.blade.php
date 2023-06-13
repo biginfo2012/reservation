@@ -61,7 +61,7 @@
                     <div class="text-center mt-1">
                         <h3>{{__('noti')}}</h3>
                     </div>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+{{--                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--}}
                 </div>
                 <div class="modal-body pb-2 px-3 pt-0">
                     <form class="form" id="save_form">

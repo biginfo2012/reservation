@@ -51,7 +51,9 @@ class MenuController extends Controller
                 'price' => $request->price,
                 'require_time' => $request->require_time,
                 'display' => $request->display,
-                'note' => $request->note
+                'note' => $request->note,
+                'over' => isset($request->over) ? 1 : 0,
+                'ask' => isset($request->ask) ? 1 : 0
             ];
             $menu_id = Menu::create($data)->id;
             MenuUser::create(['menu_id' => $menu_id,  'user_id' => Auth::user()->id]);
@@ -63,7 +65,9 @@ class MenuController extends Controller
                 'price' => $request->price,
                 'require_time' => $request->require_time,
                 'display' => $request->display,
-                'note' => $request->note
+                'note' => $request->note,
+                'over' => isset($request->over) ? 1 : 0,
+                'ask' => isset($request->ask) ? 1 : 0
             ];
             Menu::find($id)->update($data);
         }
