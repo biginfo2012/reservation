@@ -38,8 +38,7 @@ Route::group(['middleware' => 'auth'], function (){
 
     Route::get('noti-manage', [NotificationController::class, 'index'])->name('noti-manage');
     Route::post('noti-table', [NotificationController::class, 'notiTable'])->name('noti-table');
-    Route::post('noti-save', [NotificationController::class, 'notiSave'])->name('noti-save');
-    Route::post('noti-delete', [NotificationController::class, 'notiDelete'])->name('noti-delete');
+    Route::post('noti-read', [NotificationController::class, 'notiRead'])->name('noti-read');
 
     Route::get('shop-manage', [ShopController::class, 'index'])->name('shop-manage');
     Route::post('shop-table', [ShopController::class, 'shopTable'])->name('shop-table');

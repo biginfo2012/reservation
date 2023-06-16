@@ -18,10 +18,10 @@ class MenuController extends Controller
         if(isset($keyword)){
             $data = Menu::whereNull('deleted_at')->where(function ($query) use ($keyword){
                 $query->where('menu_name', 'like', '%' . $keyword . '%')->orWhere('description', 'like', '%' . $keyword . '%');
-            })->get();
+            })->orderBy('created_at', 'desc')->get();
         }
         else{
-            $data = Menu::whereNull('deleted_at')->get();
+            $data = Menu::whereNull('deleted_at')->orderBy('created_at', 'desc')->get();
         }
         return view('menu-table', compact('data'));
     }

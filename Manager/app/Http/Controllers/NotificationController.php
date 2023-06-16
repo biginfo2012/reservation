@@ -29,7 +29,7 @@ class NotificationController extends Controller
                     ->orderBy('created_at', 'DESC')->get();
             }
             else{
-                $data = Notification::all();
+                $data = Notification::orderBy('created_at', 'DESC')->get();
             }
         }
         return view('noti-table', compact('data'));

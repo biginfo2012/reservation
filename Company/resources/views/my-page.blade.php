@@ -37,7 +37,18 @@
                                         </div>
                                     </div>
                                 </div>
-
+                            </div>
+                            <div class="row">
+                                <div class="mb-1 col-md-6">
+                                    <div class="mb-1 row">
+                                        <label for="email" class="col-sm-4 col-form-label-lg text-end">{{__('shop-url')}}</label>
+                                        <div class="col-sm-8" style="padding-left: 0">
+                                            <input type="text" id="email" class="form-control"
+                                                   placeholder="" value="http://localhost:8000/shop/reservation/{{$shop_code}}"
+                                                   required tabindex="6" data-index="6"/>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-8 text-center">

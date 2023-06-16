@@ -5,17 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\Reservation;
 use App\Models\Shop;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReservationController extends Controller
 {
     //
     public function index(){
-        $shops = Shop::whereNull('deleted_at')->get()->all();
-        return view('reservation-manage', compact('shops'));
+        return view('reservation-manage');
     }
     public function reservationTable(Request $request){
         $date = $request->date;
-        $shop_id = $request->shop_id;
+        $shop_id = Shop::where('user_id', Auth::user()->id)->first()->id;
         $keyword = $request->keyword;
         if(isset($date)){
             if(isset($shop_id)){
@@ -25,27 +25,12 @@ class ReservationController extends Controller
                         ->whereHas('client', function ($query) use ($keyword) {
                             $query->where('last_name', 'like', '%' . $keyword . '%')->orWhere('first_name', 'like', '%' . $keyword . '%')->orWhere('email', 'like', '%' . $keyword . '%')
                                 ->orWhere('phone', 'like', '%' . $keyword . '%');
-                        })->get();
+                        })->orderBy('created_at', 'desc')->get();
                 }
                 else{
                     $data = Reservation::with('shop', 'client', 'menu')->whereNull('deleted_at')->where('shop_id', $shop_id)
                         ->where('reservation_time', '>=', $date . " 00:00:00")->where('reservation_time', '<=', $date . " 23:59:59")
-                        ->get();
-                }
-            }
-            else{
-                if(isset($keyword)){
-                    $data = Reservation::with('shop', 'client', 'menu')->whereNull('deleted_at')
-                        ->where('reservation_time', '>=', $date . " 00:00:00")->where('reservation_time', '<=', $date . " 23:59:59")
-                        ->whereHas('client', function ($query) use ($keyword) {
-                            $query->where('last_name', 'like', '%' . $keyword . '%')->orWhere('first_name', 'like', '%' . $keyword . '%')->orWhere('email', 'like', '%' . $keyword . '%')
-                                ->orWhere('phone', 'like', '%' . $keyword . '%');
-                        })->get();
-                }
-                else{
-                    $data = Reservation::with('shop', 'client', 'menu')->whereNull('deleted_at')
-                        ->where('reservation_time', '>=', $date . " 00:00:00")->where('reservation_time', '<=', $date . " 23:59:59")
-                        ->get();
+                        ->orderBy('created_at', 'desc')->get();
                 }
             }
         }
@@ -56,22 +41,10 @@ class ReservationController extends Controller
                         ->whereHas('client', function ($query) use ($keyword) {
                             $query->where('last_name', 'like', '%' . $keyword . '%')->orWhere('first_name', 'like', '%' . $keyword . '%')->orWhere('email', 'like', '%' . $keyword . '%')
                                 ->orWhere('phone', 'like', '%' . $keyword . '%');
-                        })->get();
+                        })->orderBy('created_at', 'desc')->get();
                 }
                 else{
-                    $data = Reservation::with('shop', 'client', 'menu')->whereNull('deleted_at')->where('shop_id', $shop_id)->get();
-                }
-            }
-            else{
-                if(isset($keyword)){
-                    $data = Reservation::with('shop', 'client', 'menu')->whereNull('deleted_at')
-                        ->whereHas('client', function ($query) use ($keyword) {
-                            $query->where('last_name', 'like', '%' . $keyword . '%')->orWhere('first_name', 'like', '%' . $keyword . '%')->orWhere('email', 'like', '%' . $keyword . '%')
-                                ->orWhere('phone', 'like', '%' . $keyword . '%');
-                        })->get();
-                }
-                else{
-                    $data = Reservation::with('shop', 'client', 'menu')->whereNull('deleted_at')->get();
+                    $data = Reservation::with('shop', 'client', 'menu')->whereNull('deleted_at')->where('shop_id', $shop_id)->orderBy('created_at', 'desc')->get();
                 }
             }
         }

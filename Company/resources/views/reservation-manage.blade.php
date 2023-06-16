@@ -20,22 +20,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row g-1 mb-md-0">
-                                    <div class="col-md-3">
-                                        <div class="mb-1 row">
-                                            <label for="shop" class="col-sm-3 col-form-label-lg text-end"
-                                                   style="padding-top: 10px">{{__('shop-name')}}</label>
-                                            <div class="col-sm-9" style="padding-left: 0">
-                                                <select class="form-select" id="shop" name="shop_id" tabindex="2" data-index="2">
-                                                    <option value="" selected>{{__('all')}}</option>
-                                                    @foreach($shops as $shop)
-                                                        <option value="{{$shop->id}}">{{$shop->shop_name}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="col-md-4">
                                         <div class="mb-1 row">
                                             <div class="col-sm-12">

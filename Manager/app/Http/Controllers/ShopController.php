@@ -35,10 +35,10 @@ class ShopController extends Controller
                             return $query->where('email', 'like', '%' . $keyword . '%');
                         });
                     });
-            })->get();
+            })->orderBy('created_at', 'desc')->get();
         }
         else{
-            $data = Shop::with('user')->whereNull('deleted_at')->get();
+            $data = Shop::with('user')->whereNull('deleted_at')->orderBy('created_at', 'desc')->get();
         }
         return view('shop-table', compact('data'));
     }

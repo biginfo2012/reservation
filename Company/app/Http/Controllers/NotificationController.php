@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Notification;
+use App\Models\NotificationUser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class NotificationController extends Controller
 {
@@ -12,62 +14,22 @@ class NotificationController extends Controller
         return view('noti-manage');
     }
     public function notiTable(Request $request){
-        $status = $request->status;
-        $publish_date = $request->publish_date;
-        if(isset($status)){
-            if(isset($publish_date)){
-                $data = Notification::where('status', $status)->where('publish_time', '>=', $publish_date . " 00:00:00")->where('publish_time', '<=', $publish_date . " 23:59:59")
-                    ->orderBy('created_at', 'DESC')->get();
-            }
-            else{
-                $data = Notification::where('status', $status)->orderBy('created_at', 'DESC')->get();
-            }
-        }
-        else{
-            if(isset($publish_date)){
-                $data = Notification::where('publish_time', '>=', $publish_date . " 00:00:00")->where('publish_time', '<=', $publish_date . " 23:59:59")
-                    ->orderBy('created_at', 'DESC')->get();
-            }
-            else{
-                $data = Notification::all();
-            }
+        $notifications = Notification::where('status', 2)->orderBy('created_at', 'desc')->get();
+        $data = array();
+        foreach ($notifications as $item){
+            $tmp['id'] = $item->id;
+            $tmp['title'] = $item->title;
+            $tmp['content'] = $item->content;
+            $tmp['publish_time'] = $item->publish_time;
+            $nu = NotificationUser::where('user_id', Auth::user()->id)->where('notification_id', $item->id)->first();
+            $tmp['status'] = empty($nu) ? 0 : 1;
+            array_push($data, $tmp);
         }
         return view('noti-table', compact('data'));
     }
-    public function notiSave(Request $request){
+    public function notiRead(Request $request){
         $id = $request->id;
-        if($request->status == 2){
-            $publish_time = date('Y-m-d H:i') . ":00";
-        }
-        else if($request->status == 1){
-            $publish_time = $request->publish_time;
-        }
-        else{
-            $publish_time = null;
-        }
-        if(!isset($id)){
-            $data = [
-                'title' => $request->title,
-                'status' => $request->status,
-                'publish_time' => $publish_time,
-                'content' => $request->note
-            ];
-            Notification::create($data);
-        }
-        else{
-            $data = [
-                'title' => $request->title,
-                'status' => $request->status,
-                'publish_time' => $request->publish_time,
-                'content' => $request->note
-            ];
-            Notification::find($id)->update($data);
-        }
-        return response()->json(['status' => true]);
-    }
-    public function notiDelete(Request $request){
-        $id = $request->id;
-        Notification::find($id)->delete();
+        NotificationUser::create(['user_id' => Auth::user()->id, 'notification_id' => $id]);
         return response()->json(['status' => true]);
     }
 }

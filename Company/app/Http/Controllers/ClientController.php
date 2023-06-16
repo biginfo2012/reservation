@@ -6,17 +6,17 @@ use App\Models\Client;
 use App\Models\Reservation;
 use App\Models\Shop;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClientController extends Controller
 {
     //
     public function index(){
-        $shops = Shop::whereNull('deleted_at')->get()->all();
-        return view('client-manage', compact('shops'));
+        return view('client-manage');
     }
     public function clientTable(Request $request){
         $date = $request->date;
-        $shop_id = $request->shop_id;
+        $shop_id = Shop::where('user_id', Auth::user()->id)->first()->id;
         $keyword = $request->keyword;
         if(isset($date)){
             if(isset($shop_id)){
@@ -29,36 +29,14 @@ class ClientController extends Controller
                             $query->where('last_name', 'like', '%' . $keyword . '%')->orWhere('first_name', 'like', '%' . $keyword . '%')
                                 ->orWhere('email', 'like', '%' . $keyword . '%')
                                 ->orWhere('phone', 'like', '%' . $keyword . '%');
-                        })->get();
+                        })->orderBy('created_at', 'desc')->get();
                 }
                 else{
                     $data = Client::with('reservation')
                         ->whereHas('reservation', function ($query) use ($shop_id, $date) {
                             $query->where('shop_id', $shop_id)->where('reservation_time', '>=', $date . " 00:00:00")
                                 ->where('reservation_time', '<=', $date . " 23:59:59");
-                        })->get();
-                }
-            }
-            else{
-                if(isset($keyword)){
-                    $data = Client::with('reservation')
-                        ->whereHas('reservation', function ($query) use ($date) {
-                            $query->where('reservation_time', '>=', $date . " 00:00:00")
-                                ->where('reservation_time', '<=', $date . " 23:59:59");
-                        })
-                        ->where(function ($query) use ($keyword) {
-                            $query->where('last_name', 'like', '%' . $keyword . '%')->orWhere('first_name', 'like', '%' . $keyword . '%')
-                                ->orWhere('email', 'like', '%' . $keyword . '%')
-                                ->orWhere('phone', 'like', '%' . $keyword . '%');
-                        })->get();
-                }
-                else{
-                    $data = Client::with('reservation')
-                        ->whereHas('reservation', function ($query) use ($date) {
-                            $query->where('reservation_time', '>=', $date . " 00:00:00")
-                                ->where('reservation_time', '<=', $date . " 23:59:59");
-                        })
-                        ->get();
+                        })->orderBy('created_at', 'desc')->get();
                 }
             }
         }
@@ -72,26 +50,13 @@ class ClientController extends Controller
                             $query->where('last_name', 'like', '%' . $keyword . '%')->orWhere('first_name', 'like', '%' . $keyword . '%')
                                 ->orWhere('email', 'like', '%' . $keyword . '%')
                                 ->orWhere('phone', 'like', '%' . $keyword . '%');
-                        })->get();
+                        })->orderBy('created_at', 'desc')->get();
                 }
                 else{
                     $data = Client::with('reservation')
                         ->whereHas('reservation', function ($query) use ($shop_id) {
                             $query->where('shop_id', $shop_id);
-                        })->get();
-                }
-            }
-            else{
-                if(isset($keyword)){
-                    $data = Client::with('reservation')
-                        ->where(function ($query) use ($keyword) {
-                            $query->where('last_name', 'like', '%' . $keyword . '%')->orWhere('first_name', 'like', '%' . $keyword . '%')
-                                ->orWhere('email', 'like', '%' . $keyword . '%')
-                                ->orWhere('phone', 'like', '%' . $keyword . '%');
-                        })->get();
-                }
-                else{
-                    $data = Client::with('reservation')->get();
+                        })->orderBy('created_at', 'desc')->get();
                 }
             }
         }
@@ -99,7 +64,7 @@ class ClientController extends Controller
     }
     public function clientExportCSV(Request $request){
         $date = $request->date;
-        $shop_id = $request->shop_id;
+        $shop_id = Shop::where('user_id', Auth::user()->id)->first()->id;
         $keyword = $request->keyword;
         if(isset($date)){
             if(isset($shop_id)){
@@ -112,36 +77,14 @@ class ClientController extends Controller
                             $query->where('last_name', 'like', '%' . $keyword . '%')->orWhere('first_name', 'like', '%' . $keyword . '%')
                                 ->orWhere('email', 'like', '%' . $keyword . '%')
                                 ->orWhere('phone', 'like', '%' . $keyword . '%');
-                        })->get();
+                        })->orderBy('created_at', 'desc')->get();
                 }
                 else{
                     $data = Client::with('reservation')
                         ->whereHas('reservation', function ($query) use ($shop_id, $date) {
                             $query->where('shop_id', $shop_id)->where('reservation_time', '>=', $date . " 00:00:00")
                                 ->where('reservation_time', '<=', $date . " 23:59:59");
-                        })->get();
-                }
-            }
-            else{
-                if(isset($keyword)){
-                    $data = Client::with('reservation')
-                        ->whereHas('reservation', function ($query) use ($date) {
-                            $query->where('reservation_time', '>=', $date . " 00:00:00")
-                                ->where('reservation_time', '<=', $date . " 23:59:59");
-                        })
-                        ->where(function ($query) use ($keyword) {
-                            $query->where('last_name', 'like', '%' . $keyword . '%')->orWhere('first_name', 'like', '%' . $keyword . '%')
-                                ->orWhere('email', 'like', '%' . $keyword . '%')
-                                ->orWhere('phone', 'like', '%' . $keyword . '%');
-                        })->get();
-                }
-                else{
-                    $data = Client::with('reservation')
-                        ->whereHas('reservation', function ($query) use ($date) {
-                            $query->where('reservation_time', '>=', $date . " 00:00:00")
-                                ->where('reservation_time', '<=', $date . " 23:59:59");
-                        })
-                        ->get();
+                        })->orderBy('created_at', 'desc')->get();
                 }
             }
         }
@@ -155,26 +98,13 @@ class ClientController extends Controller
                             $query->where('last_name', 'like', '%' . $keyword . '%')->orWhere('first_name', 'like', '%' . $keyword . '%')
                                 ->orWhere('email', 'like', '%' . $keyword . '%')
                                 ->orWhere('phone', 'like', '%' . $keyword . '%');
-                        })->get();
+                        })->orderBy('created_at', 'desc')->get();
                 }
                 else{
                     $data = Client::with('reservation')
                         ->whereHas('reservation', function ($query) use ($shop_id) {
                             $query->where('shop_id', $shop_id);
-                        })->get();
-                }
-            }
-            else{
-                if(isset($keyword)){
-                    $data = Client::with('reservation')
-                        ->where(function ($query) use ($keyword) {
-                            $query->where('last_name', 'like', '%' . $keyword . '%')->orWhere('first_name', 'like', '%' . $keyword . '%')
-                                ->orWhere('email', 'like', '%' . $keyword . '%')
-                                ->orWhere('phone', 'like', '%' . $keyword . '%');
-                        })->get();
-                }
-                else{
-                    $data = Client::with('reservation')->get();
+                        })->orderBy('created_at', 'desc')->get();
                 }
             }
         }
