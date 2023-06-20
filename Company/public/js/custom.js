@@ -62,6 +62,56 @@ function getTableData(url) {
     )
 
 }
+function getMenuTableData(url) {
+    var paramObj = new FormData($('#search_form')[0])
+    $.ajax({
+            url: url,
+            type: 'post',
+            data: paramObj,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                $('#table-part').html(response)
+                var t = $('#table')
+                t.DataTable({
+                    responsive: !0,
+                    dom: "<'row'<'col-sm-12 col-md-5 d-flex'<'pat-5'p><'pat-7'i>l>>\n\t\t\t<'row'<'col-sm-12'tr>>",
+                    lengthMenu: [20, 50, 100],
+                    pageLength: 20,
+                    // columnDefs: [{
+                    //     targets: '_all',    // Target all columns
+                    //     orderable: false,   // If true, allow column ordering
+                    // }],
+                    language: {
+                        "decimal": "",
+                        "emptyTable": "現在ありません",
+                        "info": "_START_~_END_/全_TOTAL_件",
+                        "infoEmpty": "0~0/全0件",
+                        "infoFiltered": "(filtered from _MAX_ total entries)",
+                        "infoPostFix": "",
+                        "thousands": ",",
+                        "lengthMenu": " _MENU_ ",
+                        "loadingRecords": "ロード中...",
+                        "processing": "処理中...",
+                        "search": "検索:",
+                        "zeroRecords": "一致する検索資料がありません。",
+                        "paginate": {
+                            "first": "初めに",
+                            "last": "最後",
+                            "next": "次へ",
+                            "previous": "前へ"
+                        },
+                    },
+                });
+            },
+            error: function () {
+
+            }
+        }
+
+    )
+
+}
 function getTableDataReservation(url) {
     var paramObj = new FormData($('#search_form')[0])
     $.ajax({

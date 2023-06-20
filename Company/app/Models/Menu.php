@@ -12,6 +12,6 @@ class Menu extends Model
         'menu_code', 'menu_name', 'description', 'order', 'price', 'require_time', 'display', 'deleted_at', 'note', 'over', 'ask'
     ];
     public function user(){
-        return $this->hasOne(MenuUser::class, 'id', 'menu_id');
+        return $this->hasOne(MenuUser::class, 'menu_id', 'id');
     }
 }

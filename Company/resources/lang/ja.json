@@ -109,5 +109,6 @@
     "over": "～",
     "ask": "要問合せ",
     "password-forget": "ユーザID・パスワードが不明な方は本部に連絡をお願いいたします。",
-    "reservation-time": "予約時間"
+    "reservation-time": "予約時間",
+    "order-change": "表示順"
 }

@@ -2,6 +2,7 @@
     <thead>
     <tr>
         <th class="text-center">ID</th>
+        <th class="text-center" colspan="2">{{__('order-change')}}</th>
         <th class="text-center">{{__('menu-name')}}</th>
         <th class="text-center">{{__('description')}}</th>
         <th class="text-center">{{__('price')}}</th>
@@ -13,7 +14,17 @@
     <tbody>
     @foreach($data as $index => $item)
         <tr>
-            <td class="p-0 border text-center align-middle">{{$item['menu_code']}}</td>
+            <td class="p-0 border text-center align-middle">{{$shop_code . '-' . $item['menu_code']}}</td>
+            <td class="p-0 border text-center align-middle px-1">
+                <button type="button" class="btn btn-icon rounded-circle btn-warning btn_up" {{$index == 0 ? 'disabled' : ''}} data-id="{{$item['id']}}">
+                    ▲
+                </button>
+            </td>
+            <td class="p-0 border text-center align-middle px-1">
+                <button type="button" class="btn btn-icon rounded-circle btn-warning btn_down" {{$index == count($data) - 1 ? 'disabled' : ''}} data-id="{{$item['id']}}">
+                    ▼
+                </button>
+            </td>
             <td class="p-0 border text-left align-middle px-1">{{$item['menu_name']}}</td>
             <td class="p-0 border text-left align-middle px-1">{{$item['description']}}</td>
             <td class="p-0 border text-center align-middle">{{$item['ask'] == 1 ? __('ask') : ($item['over'] == 1 ? number_format($item['price']) . __('en-char') . __('over') : number_format($item['price']) . __('en-char'))}}</td>

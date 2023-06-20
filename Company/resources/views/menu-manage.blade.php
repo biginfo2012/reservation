@@ -21,7 +21,7 @@
 
                                     <div class="col-md-3">
                                         <button class="btn mr-2 background-dark-blue color-white" id="btn_get_table"
-                                                onclick="event.preventDefault(); getTableData('{{route('menu-table')}}')">{{__('search')}}
+                                                onclick="event.preventDefault(); getMenuTableData('{{route('menu-table')}}')">{{__('search')}}
                                         </button>
                                     </div>
                                     <div class="col-md-5 text-end">
@@ -155,7 +155,7 @@
     <!--end::Content-->
     <script>
         addEventListener('pageshow', (event) => {
-            getTableData('{{route('menu-table')}}')
+            getMenuTableData('{{route('menu-table')}}')
         })
         $(document).ready(function () {
             toastr.options = {
@@ -221,7 +221,7 @@
                         success: function (response) {
                             if (response.status == true) {
                                 toastr.success("成功しました。")
-                                getTableData('{{route('menu-table')}}')
+                                getMenuTableData('{{route('menu-table')}}')
                                 $('#editMenu').modal('hide')
                             } else {
                                 toastr.warning("失敗しました。")
@@ -250,13 +250,19 @@
                 success: function (response) {
                     if (response.status == true) {
                         toastr.success("成功しました。")
-                        getTableData('{{route('menu-table')}}')
+                        getMenuTableData('{{route('menu-table')}}')
                         $('#editMenu').modal('hide')
                     } else {
                         toastr.warning("失敗しました。")
                     }
                 },
             })
+        })
+        $(document).on('click', '.btn_up', function (){
+            let id_first = $(this).data('id')
+            console.log(id_first)
+            let id_second = $(this).parent().parent().prev().find('input.id[type=hidden]').val()
+            console.log(id_second)
         })
         $(document).on('click', '.delete-menu', function () {
             let id = $(this).data('id')
@@ -327,7 +333,7 @@
                                     }
                                 }).then(function (result) {
                                     if (result.value) {
-                                        getTableData('{{route('menu-table')}}')
+                                        getMenuTableData('{{route('menu-table')}}')
                                         $('#editMenu').modal('hide')
                                     }})
                                 //toastr.success("成功しました。")

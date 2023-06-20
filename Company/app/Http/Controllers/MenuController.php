@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Menu;
 use App\Models\MenuUser;
+use App\Models\Shop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,15 +16,33 @@ class MenuController extends Controller
     }
     public function menuTable(Request $request){
         $keyword = $request->keyword;
+        $user_id = Auth::user()->id;
+        $shop_code = Shop::where('user_id', $user_id)->first()->shop_code;
+
+        $superMenuIds = MenuUser::where('user_id', 1)->pluck('menu_id');
+        $superMenu = Menu::with('user')->whereIn('id', $superMenuIds)->get();
+        foreach ($superMenu as $item){
+            $userMenu = MenuUser::where('user_id', $user_id)->where('parent_menu', $item->id)->first();
+            if(!isset($userMenu)){
+                $menu_id = Menu::create(['menu_code' => $item->menu_code, 'menu_name' => $item->menu_name, 'description' => $item->description,
+                    'order' => $item->order, 'price' => $item->price, 'require_time' => $item->require_time, 'display' => $item->display,
+                    'note' => $item->note, 'over' => $item->over, 'ask' => $item->ask, 'deleted_at' => $item->deleted_at])->id;
+                MenuUser::create(['menu_id' => $menu_id, 'user_id' => $user_id, 'parent_menu' => $item->id]);
+            }
+        }
         if(isset($keyword)){
-            $data = Menu::whereNull('deleted_at')->where(function ($query) use ($keyword){
+            $data = Menu::with('user')->whereNull('deleted_at')->where(function ($query) use ($keyword){
                 $query->where('menu_name', 'like', '%' . $keyword . '%')->orWhere('description', 'like', '%' . $keyword . '%');
-            })->get();
+            })->whereHas('user', function ($query) use ($user_id){
+                $query->where('user_id', $user_id);
+            })->orderBy('order')->get();
         }
         else{
-            $data = Menu::whereNull('deleted_at')->get();
+            $data = Menu::with('user')->whereHas('user', function ($query) use ($user_id){
+                $query->where('user_id', $user_id);
+            })->whereNull('deleted_at')->orderBy('order')->get();
         }
-        return view('menu-table', compact('data'));
+        return view('menu-table', compact('data', 'shop_code'));
     }
     public function menuCreateCode(){
         $ex = true;
