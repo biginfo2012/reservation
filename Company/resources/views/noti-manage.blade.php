@@ -58,6 +58,11 @@
     <script>
         addEventListener('pageshow', (event) => {
             getTableData('{{route('noti-table')}}')
+            $('td.content_part').each(function () {
+                let content = $(this).prev().prev().val()
+                console.log(content)
+                $(this).next().next().html(content);
+            })
         })
         $(document).ready(function () {
             toastr.options = {

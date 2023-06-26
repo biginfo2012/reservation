@@ -252,7 +252,7 @@
                         $('#represent-phone').val('')
                         $('#password').val('')
                         $('#password').attr('required', true)
-                        $('#shop-url').val('http://localhost:8000/shop/reservation/' + shop_code)
+                        $('#shop-url').val('https://www.makidume-yoyaku.com/company/reservation/' + shop_code)
                         $('#note').val('')
                         $('#btn_delete').hide()
                     },
@@ -307,7 +307,7 @@
             $('#login-id').val($(this).parent().find('input.email[type=hidden]').val())
             $('#password').val('')
             $('#password').removeAttr('required')
-            $('#shop-url').val('http://localhost:8000/shop/reservation/' + $(this).data('code'))
+            $('#shop-url').val('https://www.makidume-yoyaku.com/company/reservation/' + $(this).data('code'))
             $('#note').val($(this).parent().find('input.note[type=hidden]').val())
             $('#btn_delete').show()
             $('#editShop').modal('toggle')

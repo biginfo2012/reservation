@@ -95,10 +95,6 @@
                                             <input class="form-check-input" type="checkbox" id="over" name="over" value="checked"/>
                                             <label class="form-check-label" for="over">{{__('show-over')}}</label>
                                         </div>
-                                        <div class="form-check form-check-inline" style="padding-top: 5px">
-                                            <input class="form-check-input" type="checkbox" id="ask" name="ask" value="checked"/>
-                                            <label class="form-check-label" for="ask">{{__('show-ask')}}</label>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -109,6 +105,10 @@
                                     <div class="col-sm-8" style="padding-left: 0">
                                         <input type="text" id="require_time" class="form-control" name="require_time"
                                                placeholder="" required/>
+                                        <div class="form-check form-check-inline" style="padding-top: 5px">
+                                            <input class="form-check-input" type="checkbox" id="ask" name="ask" value="checked"/>
+                                            <label class="form-check-label" for="ask">{{__('show-ask')}}</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -263,6 +263,56 @@
             console.log(id_first)
             let id_second = $(this).parent().parent().prev().find('input.id[type=hidden]').val()
             console.log(id_second)
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': token
+                }
+            })
+            $.ajax({
+                url: '{{route('menu-change-order')}}',
+                type: 'post',
+                data: {
+                    id_first : id_first,
+                    id_second: id_second
+                },
+                success: function (response) {
+                    if (response.status == true) {
+                        toastr.success("成功しました。")
+                        getMenuTableData('{{route('menu-table')}}')
+                        $('#editMenu').modal('hide')
+                    } else {
+                        toastr.warning("失敗しました。")
+                    }
+                },
+            })
+        })
+        $(document).on('click', '.btn_down', function (){
+            let id_first = $(this).data('id')
+            console.log(id_first)
+            let id_second = $(this).parent().parent().next().find('input.id[type=hidden]').val()
+            console.log(id_second)
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': token
+                }
+            })
+            $.ajax({
+                url: '{{route('menu-change-order')}}',
+                type: 'post',
+                data: {
+                    id_first : id_first,
+                    id_second: id_second
+                },
+                success: function (response) {
+                    if (response.status == true) {
+                        toastr.success("成功しました。")
+                        getMenuTableData('{{route('menu-table')}}')
+                        $('#editMenu').modal('hide')
+                    } else {
+                        toastr.warning("失敗しました。")
+                    }
+                },
+            })
         })
         $(document).on('click', '.delete-menu', function () {
             let id = $(this).data('id')
@@ -349,4 +399,13 @@
             })
         }
     </script>
+    <style>
+        .text-hide{
+            display: inline-block;
+            width: 300px;
+            white-space: nowrap;
+            overflow: hidden !important;
+            text-overflow: ellipsis;
+        }
+    </style>
 </x-app-layout>

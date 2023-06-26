@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>巻き爪専門センター</title>
 
-    <link rel="apple-touch-icon" href="{{ asset('theme/images/ico/apple-icon-120.png') }}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('theme/images/ico/favicon.ico') }}">
+{{--    <link rel="apple-touch-icon" href="{{ asset('theme/images/ico/apple-icon-120.png') }}">--}}
+{{--    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('theme/images/ico/favicon.ico') }}">--}}
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600"
           rel="stylesheet">
 
@@ -71,7 +71,7 @@
 <!-- END: Content-->
 <footer class="footer footer-static footer-light footer-gradient" style="color: white">
     <p class="clearfix mb-0 d-flex"><a href="https://makidumespecialty.shop/" target="_blank" class="float-md-start d-block d-md-inline-block mt-25 color-white" style="margin: auto">{{__('footer-title')}}</a></p>
-    <p class="clearfix mb-0 d-flex"><span class="float-md-start d-block d-md-inline-block mt-25" style="margin: auto">Copyright &copy; 2023 Manager, All rights Reserved</span></p>
+    <p class="clearfix mb-0 d-flex"><span class="float-md-start d-block d-md-inline-block mt-25" style="margin: auto">Copyright &copy; 2023 巻き爪専門センター, All rights Reserved</span></p>
 </footer>
 <!-- BEGIN: Vendor JS-->
 

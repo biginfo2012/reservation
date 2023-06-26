@@ -13,9 +13,9 @@
     <tbody>
     @foreach($data as $index => $item)
         <tr>
-            <td class="p-0 border text-center align-middle">{{$item['menu_code']}}</td>
+            <td class="p-0 border text-center align-middle">000000-{{$item['menu_code']}}</td>
             <td class="p-0 border text-left align-middle px-1">{{$item['menu_name']}}</td>
-            <td class="p-0 border text-left align-middle px-1">{{$item['description']}}</td>
+            <td class="p-0 border text-left align-middle px-1"><label class="text-hide">{{$item['description']}}</label></td>
             <td class="p-0 border text-center align-middle">{{$item['ask'] == 1 ? __('ask') : ($item['over'] == 1 ? number_format($item['price']) . __('en-char') . __('over') : number_format($item['price']) . __('en-char'))}}</td>
             <td class="p-0 border text-center align-middle">{{$item['require_time'] . __('min')}}</td>
             <td class="p-0 border text-center align-middle">

@@ -19,9 +19,9 @@
                                                 <input type="hidden" value="{{$item['title']}}" class="title">
                                                 <input type="hidden" value="{{date('Y/m/d H:i', strtotime($item['publish_time']))}}" class="publish_time">
                                                 <input type="hidden" value="{{$item['content']}}" class="content">
+                                                <td class="p-0 border text-start align-middle px-1">{{date('Y/m/d H:i', strtotime($item['publish_time']))}}</td>
                                                 <td class="p-0 border text-start align-middle px-1">{{$item['title']}}</td>
-                                                <td class="p-0 border text-start align-middle px-1">{{$item['content']}}</td>
-                                                <td class="p-0 border text-start align-middle px-1">
+                                                <td class="p-0 border text-center align-middle px-1">
                                                     <button class="btn btn-outline-dark waves-effect show_noti {{$item['status'] == 0 ? 'color-red-tmp' : ''}}"
                                                            data-id="{{$item['id']}}" style="padding: 8px; margin: 5px;">{{__('detail')}}</button>
                                                 </td>
@@ -48,23 +48,27 @@
                                 <div class="col-2">
 
                                 </div>
-                                <div class="col-1">
-                                    <p class="text-start">{{__('prev-week')}}</p>
-                                </div>
-                                <div class="col-1">
-                                    <p class="text-start">{{__('this-week')}}</p>
-                                </div>
-                                <div class="col-1">
-                                    <p class="text-start">{{__('next-week')}}</p>
-                                </div>
-                                <div class="col-2">
-                                    <p class="text-start">{{__('prev-month')}}</p>
-                                </div>
-                                <div class="col-3">
-                                    <p class="text-start">{{__('this-month')}}</p>
-                                </div>
-                                <div class="col-2">
-                                    <p class="text-start">{{__('next-month')}}</p>
+                                <div class="col-10">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <p class="text-start">{{__('prev-week')}}</p>
+                                        </div>
+                                        <div class="col-2">
+                                            <p class="text-start">{{__('this-week')}}</p>
+                                        </div>
+                                        <div class="col-2">
+                                            <p class="text-start">{{__('next-week')}}</p>
+                                        </div>
+                                        <div class="col-2">
+                                            <p class="text-start">{{__('prev-month')}}</p>
+                                        </div>
+                                        <div class="col-2">
+                                            <p class="text-start">{{__('this-month')}}</p>
+                                        </div>
+                                        <div class="col-2">
+                                            <p class="text-start">{{__('next-month')}}</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -80,23 +84,27 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-1">
-                                    <div class="text-start">{{$lastWeekCnt . __('man')}}</div>
-                                </div>
-                                <div class="col-1">
-                                    <div class="text-start">{{$thisWeekCnt . __('man')}}</div>
-                                </div>
-                                <div class="col-1">
-                                    <div class="text-start">{{$nextWeekCnt . __('man')}}</div>
-                                </div>
-                                <div class="col-2">
-                                    <div class="text-start">{{$lastMonthCnt . __('man')}}</div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="text-start">{{$thisMonthCnt . __('man')}}</div>
-                                </div>
-                                <div class="col-2">
-                                    <div class="text-start">{{$nextMonthCnt . __('man')}}</div>
+                                <div class="col-10">
+                                    <div class="row" style="margin-top: 7px">
+                                        <div class="col-2">
+                                            <div class="text-start">{{$lastWeekCnt . __('man')}}</div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="text-start">{{$thisWeekCnt . __('man')}}</div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="text-start">{{$nextWeekCnt . __('man')}}</div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="text-start">{{$lastMonthCnt . __('man')}}</div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="text-start">{{$thisMonthCnt . __('man')}}</div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="text-start">{{$nextMonthCnt . __('man')}}</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -112,24 +120,29 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-1">
-                                    <div class="text-start">{{__('en') . number_format($lastWeekPrice) }}</div>
+                                <div class="col-10">
+                                    <div class="row">
+                                        <div class="col-2" style="margin-top: 7px">
+                                            <div class="text-start">{{__('en') . number_format($lastWeekPrice) }}</div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="text-start">{{__('en') . number_format($thisWeekPrice) }}</div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="text-start">{{__('en') . number_format($nextWeekPrice) }}</div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="text-start">{{__('en') . number_format($lastMonthPrice) }}</div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="text-start">{{__('en') . number_format($thisMonthPrice) }}</div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="text-start">{{__('en') . number_format($nextMonthPrice) }}</div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-1">
-                                    <div class="text-start">{{__('en') . number_format($thisWeekPrice) }}</div>
-                                </div>
-                                <div class="col-1">
-                                    <div class="text-start">{{__('en') . number_format($nextWeekPrice) }}</div>
-                                </div>
-                                <div class="col-2">
-                                    <div class="text-start">{{__('en') . number_format($lastMonthPrice) }}</div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="text-start">{{__('en') . number_format($thisMonthPrice) }}</div>
-                                </div>
-                                <div class="col-2">
-                                    <div class="text-start">{{__('en') . number_format($nextMonthPrice) }}</div>
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -143,7 +156,7 @@
                         <div class="card-header">
                             <h4 class="card-title">{{__('reservation-by-shop')}}</h4>
                             <div class="d-flex align-items-center">
-                                <p class="card-text font-medium-1 me-25 mb-0">{{__('date')}}: {{date('d/m/Y')}}</p>
+                                <p class="card-text font-medium-1 me-25 mb-0">{{__('date')}}: {{date('Y年m月d日')}}</p>
                             </div>
                         </div>
                         <div class="card-body pt-0">

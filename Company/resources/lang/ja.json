@@ -110,5 +110,17 @@
     "ask": "要問合せ",
     "password-forget": "ユーザID・パスワードが不明な方は本部に連絡をお願いいたします。",
     "reservation-time": "予約時間",
-    "order-change": "表示順"
+    "order-change": "表示順",
+    "shop-info": "店舗情報",
+    "header-image": "ヘッター画像",
+    "other-setting": "その他設定",
+    "running-time": "営業時間",
+    "accept-people": "受付人数",
+    "rest-day": "定休日",
+    "temp-rest": "臨時休業日",
+    "reservation-unit": "予約間隔",
+    "shop-setting": "店舗設定",
+    "file-select": "ファイルを選択",
+    "unit": "間隔",
+    "super-admin": "本部管理者"
 }

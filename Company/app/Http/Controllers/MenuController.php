@@ -60,6 +60,15 @@ class MenuController extends Controller
         Menu::find($request->id)->update(['display' => $request->display]);
         return response()->json(['status' => true]);
     }
+    public function menuChangeOrder(Request $request){
+        $id_first = $request->id_first;
+        $id_second = $request->id_second;
+        $order_first = Menu::find($id_first)->order;
+        $order_second = Menu::find($id_second)->order;
+        Menu::find($id_first)->update(['order' => $order_second]);
+        Menu::find($id_second)->update(['order' => $order_first]);
+        return response()->json(['status' => true]);
+    }
     public function menuSave(Request $request){
         $id = $request->id;
         if(!isset($id)){

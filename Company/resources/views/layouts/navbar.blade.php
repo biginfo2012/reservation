@@ -21,11 +21,11 @@
                     <span class="menu-title text-truncate" data-i18n="{{__('noti-manage')}}">{{__('noti-manage')}}</span>
                 </a>
             </li>
-{{--            <li class="{{ str_contains(\Request::route()->getName(), 'shop') ? 'active' : '' }} nav-item">--}}
-{{--                <a class="d-flex align-items-center" href="{{route('shop-manage')}}">--}}
-{{--                    <span class="menu-title text-truncate" data-i18n="{{__('shop-manage')}}">{{__('shop-manage')}}</span>--}}
-{{--                </a>--}}
-{{--            </li>--}}
+            <li class="{{ str_contains(\Request::route()->getName(), 'shop') ? 'active' : '' }} nav-item">
+                <a class="d-flex align-items-center" href="{{route('shop-setting')}}">
+                    <span class="menu-title text-truncate" data-i18n="{{__('shop-setting')}}">{{__('shop-setting')}}</span>
+                </a>
+            </li>
             <li class="{{ str_contains(\Request::route()->getName(), 'menu') ? 'active' : '' }} nav-item">
                 <a class="d-flex align-items-center" href="{{route('menu-manage')}}">
                     <span class="menu-title text-truncate" data-i18n="{{__('menu-manage')}}">{{__('menu-manage')}}</span>

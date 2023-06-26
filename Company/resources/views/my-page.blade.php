@@ -5,14 +5,14 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-body border-bottom">
-                            <div
-                                class="d-flex justify-content-between align-items-center header-actions row mt-75">
-                                <div class="col-sm-12 col-lg-4 d-flex justify-content-center justify-content-lg-start">
-                                    <h4 class="card-title mb-0">{{__('detail')}}</h4>
-                                </div>
-                            </div>
-                        </div>
+{{--                        <div class="card-body border-bottom">--}}
+{{--                            <div--}}
+{{--                                class="d-flex justify-content-between align-items-center header-actions row mt-75">--}}
+{{--                                <div class="col-sm-12 col-lg-4 d-flex justify-content-center justify-content-lg-start">--}}
+{{--                                    <h4 class="card-title mb-0">{{__('detail')}}</h4>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                         <div class="card-body mt-2">
                             <div class="row">
                                 <div class="mb-1 col-md-6">
@@ -44,7 +44,7 @@
                                         <label for="email" class="col-sm-4 col-form-label-lg text-end">{{__('shop-url')}}</label>
                                         <div class="col-sm-8" style="padding-left: 0">
                                             <input type="text" id="email" class="form-control"
-                                                   placeholder="" value="http://localhost:8000/shop/reservation/{{$shop_code}}"
+                                                   placeholder="" value="https://www.makidume-yoyaku.com/company/reservation/{{$shop_code}}"
                                                    required tabindex="6" data-index="6"/>
                                         </div>
                                     </div>

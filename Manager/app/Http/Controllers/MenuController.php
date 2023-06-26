@@ -15,13 +15,18 @@ class MenuController extends Controller
     }
     public function menuTable(Request $request){
         $keyword = $request->keyword;
+        $user_id = Auth::user()->id;
         if(isset($keyword)){
-            $data = Menu::whereNull('deleted_at')->where(function ($query) use ($keyword){
+            $data = Menu::with('user')->whereNull('deleted_at')->where(function ($query) use ($keyword){
                 $query->where('menu_name', 'like', '%' . $keyword . '%')->orWhere('description', 'like', '%' . $keyword . '%');
+            })->whereHas('user', function ($query) use ($user_id){
+                $query->where('user_id', $user_id);
             })->orderBy('order')->get();
         }
         else{
-            $data = Menu::whereNull('deleted_at')->orderBy('order')->get();
+            $data = Menu::with('user')->whereNull('deleted_at')->whereHas('user', function ($query) use ($user_id){
+                $query->where('user_id', $user_id);
+            })->orderBy('order')->get();
         }
         return view('menu-table', compact('data'));
     }

@@ -95,10 +95,6 @@
                                             <input class="form-check-input" type="checkbox" id="over" name="over" value="checked"/>
                                             <label class="form-check-label" for="over">{{__('show-over')}}</label>
                                         </div>
-                                        <div class="form-check form-check-inline" style="padding-top: 5px">
-                                            <input class="form-check-input" type="checkbox" id="ask" name="ask" value="checked"/>
-                                            <label class="form-check-label" for="ask">{{__('show-ask')}}</label>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -109,6 +105,10 @@
                                     <div class="col-sm-8" style="padding-left: 0">
                                         <input type="text" id="require_time" class="form-control" name="require_time"
                                                placeholder="" required/>
+                                        <div class="form-check form-check-inline" style="padding-top: 5px">
+                                            <input class="form-check-input" type="checkbox" id="ask" name="ask" value="checked"/>
+                                            <label class="form-check-label" for="ask">{{__('show-ask')}}</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -343,4 +343,13 @@
             })
         }
     </script>
+    <style>
+        .text-hide{
+            display: inline-block;
+            width: 300px;
+            white-space: nowrap;
+            overflow: hidden !important;
+            text-overflow: ellipsis;
+        }
+    </style>
 </x-app-layout>

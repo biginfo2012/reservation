@@ -50,8 +50,13 @@ Route::group(['middleware' => 'auth'], function (){
     Route::post('menu-table', [MenuController::class, 'menuTable'])->name('menu-table');
     Route::get('menu-create-code', [MenuController::class, 'menuCreateCode'])->name('menu-create-code');
     Route::post('menu-change-display', [MenuController::class, 'menuChangeDisplay'])->name('menu-change-display');
+    Route::post('menu-change-order', [MenuController::class, 'menuChangeOrder'])->name('menu-change-order');
     Route::post('menu-save', [MenuController::class, 'menuSave'])->name('menu-save');
     Route::post('menu-delete', [MenuController::class, 'menuDelete'])->name('menu-delete');
+
+    Route::get('shop-setting', [ShopController::class, 'shopSetting'])->name('shop-setting');
+    Route::post('change-setting', [ShopController::class, 'changeSetting'])->name('change-setting');
+    Route::post('shop-image', [ShopController::class, 'shopImage'])->name('shop-image');
 
     Route::get('my-page', [MyController::class, 'index'])->name('my-page');
     Route::post('change-password', [MyController::class, 'changePassword'])->name('change-password');

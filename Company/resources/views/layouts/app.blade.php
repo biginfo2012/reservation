@@ -7,9 +7,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimal-ui">
-    <title>{{ config('app.name', 'Laravel') }}</title>
-    <link rel="apple-touch-icon" href="{{ asset('theme/images/ico/apple-icon-120.png') }}') }}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('theme/images/ico/favicon.ico') }}">
+    <title>巻き爪専門センター</title>
+{{--    <link rel="apple-touch-icon" href="{{ asset('theme/images/ico/apple-icon-120.png') }}') }}">--}}
+{{--    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('theme/images/ico/favicon.ico') }}">--}}
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600"
           rel="stylesheet">
 
@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/vendors/css/animate/animate.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/vendors/css/extensions/sweetalert2.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/vendors/css/jkanban/jkanban.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('theme/vendors/css/pickers/pickadate/pickadate.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/vendors/css/pickers/flatpickr/flatpickr.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/vendors/css/forms/select/select2.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/vendors/css/editors/quill/katex.min.css') }}">
@@ -44,6 +45,7 @@
     <!-- BEGIN: Page CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/css/core/menu/menu-types/vertical-menu.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/css/plugins/forms/pickers/form-flat-pickr.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('theme/css/plugins/forms/pickers/form-pickadate.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/css/plugins/extensions/ext-component-toastr.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/css/plugins/forms/form-quill-editor.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/css/plugins/forms/form-validation.css') }}">
@@ -103,6 +105,10 @@
 <script src="{{ asset('theme/vendors/js/extensions/toastr.min.js') }}"></script>
 <script src="{{ asset('theme/vendors/js/jkanban/jkanban.min.js') }}"></script>
 <script src="{{ asset('theme/vendors/js/forms/select/select2.full.min.js') }}"></script>
+<script src="{{asset('theme/vendors/js/pickers/pickadate/picker.js')}}"></script>
+<script src="{{asset('theme/vendors/js/pickers/pickadate/picker.date.js')}}"></script>
+<script src="{{asset('theme/vendors/js/pickers/pickadate/picker.time.js')}}"></script>
+<script src="{{asset('theme/vendors/js/pickers/pickadate/legacy.js')}}"></script>
 <script src="{{ asset('theme/vendors/js/pickers/flatpickr/flatpickr.min.js') }}"></script>
 <script src="{{ asset('theme/vendors/js/editors/quill/katex.min.js') }}"></script>
 <script src="{{ asset('theme/vendors/js/editors/quill/highlight.min.js') }}"></script>
