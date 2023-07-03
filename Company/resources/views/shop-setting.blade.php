@@ -331,7 +331,7 @@
                                                style="padding-right: 0">{{__('password')}}</label>
                                         <div class="col-sm-8" style="padding-left: 0">
                                             <input type="password" id="password" class="form-control" name="password" minlength="8"
-                                                   placeholder="" required/>
+                                                   placeholder=""/>
                                         </div>
                                     </div>
                                 </div>
@@ -340,7 +340,7 @@
                                         <label for="shop-url" class="col-sm-2 col-form-label-lg"
                                                style="padding-right: 0">{{__('shop-url')}}</label>
                                         <div class="col-sm-10" style="padding-left: 0">
-                                            <input type="text" id="shop-url" class="form-control"
+                                            <input type="text" id="shop-url" class="form-control" value="https://www.makidume-yoyaku.com/reservation/{{$shop->shop_code}}"
                                                    placeholder="" disabled/>
                                         </div>
                                     </div>

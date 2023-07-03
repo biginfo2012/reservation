@@ -3,7 +3,7 @@
     </IfModule>
 
     RewriteEngine On
-    RewriteBase "/company/"
+    RewriteBase "/reservation/"
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

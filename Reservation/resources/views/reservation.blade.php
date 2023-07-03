@@ -78,9 +78,21 @@
 <div class="app-content content" style="min-height: calc(100% - 6.85rem) !important; overflow: hidden; margin-left: 0 !important;">
     <div class="content-overlay"></div>
     <div class="header-navbar-shadow"></div>
-    <div class="content-wrapper container-xxl p-0">
+    <div class="content-wrapper container-xxl p-0 mb-5">
         <div class="content-header row">
             @include('menus', ['menus' => $menus])
+        </div>
+        <div class="content-header row">
+            @include('time', ['data' => $data])
+        </div>
+        <div class="content-header row">
+            @include('user')
+        </div>
+        <div class="content-header row">
+            @include('confirm')
+        </div>
+        <div class="content-header row">
+            @include('complete')
         </div>
     </div>
 </div>

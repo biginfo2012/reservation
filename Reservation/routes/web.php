@@ -19,6 +19,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/{id}', [ReservationController::class, 'index']);
+Route::get('/{id}', [ReservationController::class, 'index'])->name('reservation');
+Route::post('/reservation-add', [ReservationController::class, 'reservationAdd'])->name('reservation-add');
+Route::get('/cancel/{code}', [ReservationController::class, 'reservationCancel'])->name('reservation-cancel');
+Route::post('/cancel-reservation', [ReservationController::class, 'reservationCancelPost'])->name('cancel-reservation');
+Route::post('/cancel-reservation-mail', [ReservationController::class, 'reservationCancelMail'])->name('cancel-reservation-mail');
 
 //require __DIR__.'/auth.php';

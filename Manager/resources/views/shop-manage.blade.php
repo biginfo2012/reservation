@@ -165,7 +165,7 @@
                                            style="padding-right: 0">{{__('password')}}</label>
                                     <div class="col-sm-8" style="padding-left: 0">
                                         <input type="password" id="password" class="form-control" name="password" minlength="8"
-                                               placeholder="" required/>
+                                               placeholder=""/>
                                     </div>
                                 </div>
                             </div>
@@ -252,7 +252,7 @@
                         $('#represent-phone').val('')
                         $('#password').val('')
                         $('#password').attr('required', true)
-                        $('#shop-url').val('https://www.makidume-yoyaku.com/company/reservation/' + shop_code)
+                        $('#shop-url').val('https://www.makidume-yoyaku.com/reservation/' + shop_code)
                         $('#note').val('')
                         $('#btn_delete').hide()
                     },
@@ -307,7 +307,7 @@
             $('#login-id').val($(this).parent().find('input.email[type=hidden]').val())
             $('#password').val('')
             $('#password').removeAttr('required')
-            $('#shop-url').val('https://www.makidume-yoyaku.com/company/reservation/' + $(this).data('code'))
+            $('#shop-url').val('https://www.makidume-yoyaku.com/reservation/' + $(this).data('code'))
             $('#note').val($(this).parent().find('input.note[type=hidden]').val())
             $('#btn_delete').show()
             $('#editShop').modal('toggle')
