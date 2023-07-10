@@ -306,17 +306,17 @@
                         $('#email').val(data['client']['email'])
                         let menus = ''
                         for(let i = 0; i < data['menu'].length; i++){
-                            menus = menus + data['menu'][i]['menu']['description'] + '\n'
+                            menus = menus + data['menu'][i]['menu']['menu_name'] + '\n' + data['menu'][i]['menu']['description'] + '\n'
                         }
                         $('#reservation_menu').val(menus)
                         let price = 0
                         for(let i = 0; i < data['menu'].length; i++){
-                            price = price + data['menu'][i]['menu']['price'] + '\n'
+                            price = price + parseInt(data['menu'][i]['menu']['price'])
                         }
                         $('#price').val(price)
                         let require_time = 0
                         for(let i = 0; i < data['menu'].length; i++){
-                            require_time = require_time + data['menu'][i]['menu']['require_time'] + '\n'
+                            require_time = require_time + parseInt(data['menu'][i]['menu']['require_time'])
                         }
                         $('#require_time').val(require_time)
                         $('#gender').val(data['client']['gender'] ? '{{__('female')}}' : '{{__('male')}}')

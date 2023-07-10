@@ -140,9 +140,9 @@ class DashboardController extends Controller
         $sql = "SELECT COUNT(c.id) AS client_cnt, s.id AS shopId, SUM(CASE WHEN c.is_first = 1 THEN 1 ELSE 0 END) AS first_cnt, SUM(CASE WHEN c.is_first = 0 THEN 1 ELSE 0 END) AS twice_cnt FROM reservations AS r
 LEFT JOIN clients AS c ON c.id = r.client_id
 LEFT JOIN shops AS s ON s.id = r.shop_id
-WHERE DATE(r.created_at) = '" . $date . "' AND r.deleted_at IS NULL
+WHERE DATE(r.reservation_time) = '" . $date . "' AND r.deleted_at IS NULL
 GROUP BY shopId ORDER BY shopId";
-        $table_data = DB::select($sql, [1]);
+        $table_data = DB::select($sql);
         $table_data = json_decode(json_encode($table_data, true), true);
         $arr = array();
         foreach ($table_data as $shop){

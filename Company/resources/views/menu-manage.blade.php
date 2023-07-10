@@ -193,7 +193,7 @@
                         $('#menu_code').val(menu_code)
                         $("#menu-name").val("")
                         $("#description").val("")
-                        $("#price").val("")
+                        $("#price").val(0)
                         $("#require_time").val("")
                         $('input:radio[name="display"]').filter('[value="1"]').attr('checked', true)
                         $('#note').val('')

@@ -341,6 +341,9 @@ class ReservationController extends Controller
     }
     public function reservationCancel($code){
         $reservation = Reservation::with('menu')->where('reservation_code', $code)->first();
+        if(!isset($reservation) || empty($reservation) || $reservation->deleted_at != null){
+            return view('reservation-no');
+        }
         $weeks = ['月', '火', '水', '木', '金', '土', '日'];
         $w_index = date('w', strtotime($reservation->reservation_time));
         $weekday = $weeks[$w_index];

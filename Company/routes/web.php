@@ -30,6 +30,7 @@ Route::group(['middleware' => 'auth'], function (){
     Route::post('reservation-table', [ReservationController::class, 'reservationTable'])->name('reservation-table');
     Route::get('reservation-edit/{id}', [ReservationController::class, 'reservationEdit'])->name('reservation-edit');
     Route::post('reservation-get', [ReservationController::class, 'reservationGet'])->name('reservation-get');
+    Route::post('/cancel-reservation-mail', [ReservationController::class, 'reservationCancelMail'])->name('cancel-reservation-mail');
 
     Route::get('client-manage', [ClientController::class, 'index'])->name('client-manage');
     Route::post('client-table', [ClientController::class, 'clientTable'])->name('client-table');

@@ -93,7 +93,7 @@
                                                       data-index="7">@php
                                                     $desc = "";
                                                     foreach($data['menu'] as $reservation_menu) {
-                                                        $desc = $desc . $reservation_menu['menu']['description'] . "\n";
+                                                        $desc = $desc . $reservation_menu['menu']['menu_name'] . "\n" . $reservation_menu['menu']['description'] . "\n";
                                                     }
                                                     echo $desc
                                                 @endphp</textarea>
@@ -171,10 +171,16 @@
                                 </div>
 
                             </div>
+                            <form id="cancelForm" method="POST">
+                                @csrf
+                                <input type="hidden" name="reservation_id" value="{{$data->id}}">
+                            </form>
                             <div class="row">
                                 <div class="col-12 text-center">
                                     <label class="btn waves-effect background-dark-blue color-white cursor-pointer"
                                            tabindex="15" id="btn_cancel">{{__('close')}}</label>
+                                    <button id="cancelReservation" href="javascript:void(0);"
+                                       class="btn btn-danger">{{__('reservation-cancel')}}</button>
                                 </div>
                             </div>
 
@@ -186,3 +192,29 @@
     </div>
     <!--end::Content-->
 </x-app-layout>
+<script>
+    $('#cancelReservation').click(function () {
+        let paramObj = new FormData($('#cancelForm')[0])
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': token
+            }
+        })
+        $.ajax({
+            url: '{{ route('cancel-reservation-mail') }}',
+            type: 'post',
+            data: paramObj,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                $('#spinner_border').hide()
+                if (response.status == true) {
+                    toastr.success("成功しました。")
+                    GoBackWithRefresh()
+                } else {
+                    toastr.warning("失敗しました。")
+                }
+            },
+        })
+    })
+</script>

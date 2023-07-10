@@ -142,11 +142,11 @@
                                         <tbody>
                                         @foreach($table_data as $item)
                                             <tr>
-                                                <td class="p-0 border text-start align-middle px-1"><a href="{{route('reservation-list')}}/?shop_id={{$item['shopId']}}">{{$item['shop_name']}}</a></td>
-                                                <td class="p-0 border text-start align-middle px-1">{{$item['client_cnt'] . __('man')}}</td>
-                                                <td class="p-0 border text-start align-middle px-1">{{$item['first_cnt'] . __('man')}}</td>
-                                                <td class="p-0 border text-start align-middle px-1">{{$item['twice_cnt'] . __('man')}}</td>
-                                                <td class="p-0 border text-start align-middle px-1">{{__('en') . number_format($item['price'])}}</td>
+                                                <td class="p-1 border text-start align-middle"><a href="{{route('reservation-list')}}/?shop_id={{$item['shopId']}}">{{$item['shop_name']}}</a></td>
+                                                <td class="p-1 border text-start align-middle">{{$item['client_cnt'] . __('man')}}</td>
+                                                <td class="p-1 border text-start align-middle">{{$item['first_cnt'] . __('man')}}</td>
+                                                <td class="p-1 border text-start align-middle">{{$item['twice_cnt'] . __('man')}}</td>
+                                                <td class="p-1 border text-start align-middle">{{__('en') . number_format($item['price'])}}</td>
                                             </tr>
                                         @endforeach
                                         </tbody>

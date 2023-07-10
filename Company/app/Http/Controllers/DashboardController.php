@@ -154,7 +154,7 @@ class DashboardController extends Controller
         $date = date('Y-m-d');
         $table_data = Reservation::with('shop', 'client', 'menu')->whereNull('deleted_at')->where('shop_id', $shop_id)
             ->where('reservation_time', '>=', $date . " 00:00:00")->where('reservation_time', '<=', $date . " 23:59:59")
-            ->orderBy('created_at', 'desc')->get();
+            ->orderBy('reservation_time')->get();
         return view('dashboard', compact('table_data', 'lastWeekCnt', 'lastWeekPrice', 'thisWeekCnt', 'thisWeekPrice', 'nextWeekCnt', 'nextWeekPrice',
             'lastMonthCnt', 'lastMonthPrice', 'thisMonthCnt', 'thisMonthPrice', 'nextMonthCnt', 'nextMonthPrice', 'notifications'));
     }

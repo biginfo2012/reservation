@@ -17,7 +17,7 @@
         <tr>
             <td class="p-0 border text-center align-middle" width="15">{{$item['reservation_code']}}</td>
             <td class="p-0 border text-left align-middle px-1 text-ellipsis" width="10">{{$item['client']['last_name'] . $item['client']['first_name']}}</td>
-            <td class="p-0 border text-center align-middle" width="15">{{date('Y/m/d H:i', $item['created_at'])}}</td>
+            <td class="p-0 border text-center align-middle" width="15">{{date('Y/m/d H:i', strtotime($item['reservation_time']))}}</td>
             <td class="p-0 border text-center align-middle" width="5">
                 @php
                     $price = 0;

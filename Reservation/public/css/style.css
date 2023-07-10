@@ -540,6 +540,11 @@ table.taform th.right {
     margin-bottom: 10px;
 }
 @media screen and (max-width: 819px){
+    #content-footer a.f-btn1 {
+        line-height: 38px;
+        width: 100%;
+        margin: 10px 0px;
+    }
     table.taform th.right {
         text-align: left;
     }

@@ -122,5 +122,6 @@
     "shop-setting": "店舗設定",
     "file-select": "ファイルを選択",
     "unit": "間隔",
-    "super-admin": "本部管理者"
+    "super-admin": "本部管理者",
+    "reservation-cancel": "予約をキャンセルする"
 }

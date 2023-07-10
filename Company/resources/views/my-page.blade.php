@@ -44,7 +44,7 @@
                                         <label for="email" class="col-sm-4 col-form-label-lg text-end">{{__('shop-url')}}</label>
                                         <div class="col-sm-8" style="padding-left: 0">
                                             <input type="text" id="email" class="form-control"
-                                                   placeholder="" value="https://www.makidume-yoyaku.com/company/reservation/{{$shop_code}}"
+                                                   placeholder="" value="https://www.makidume-yoyaku.com/reservation/{{$shop_code}}"
                                                    required tabindex="6" data-index="6"/>
                                         </div>
                                     </div>
