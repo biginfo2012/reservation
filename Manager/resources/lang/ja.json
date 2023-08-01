@@ -86,7 +86,7 @@
     "password-change": "パスワードを変更する",
     "user-name": "ユーザ名",
     "change-password": "パスワードの変更",
-    "current-password": "以前のパスワード",
+    "current-password": "現在のパスワード",
     "new-password": "新しいパスワード",
     "password-confirm": "パスワードを認証",
     "first": "初診",
@@ -108,5 +108,6 @@
     "show-ask": "要問合せを表示",
     "over": "～",
     "ask": "要問合せ",
-    "super-admin": "本部管理者"
+    "super-admin": "本部管理者",
+    "admin-sys": "管理者システム"
 }

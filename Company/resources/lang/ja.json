@@ -86,7 +86,7 @@
     "password-change": "パスワードを変更する",
     "user-name": "ユーザ名",
     "change-password": "パスワードの変更",
-    "current-password": "以前のパスワード",
+    "current-password": "現在のパスワード",
     "new-password": "新しいパスワード",
     "password-confirm": "パスワードを認証",
     "first": "初診",
@@ -123,5 +123,9 @@
     "file-select": "ファイルを選択",
     "unit": "間隔",
     "super-admin": "本部管理者",
-    "reservation-cancel": "予約をキャンセルする"
+    "reservation-cancel": "予約をキャンセルする",
+    "reservation-today": "本日の予約状況",
+    "shop-sys": "店舗システム",
+    "control-reservation": "予約日を調整する",
+    "day-time": "日時"
 }

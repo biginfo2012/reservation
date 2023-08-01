@@ -158,4 +158,18 @@ class DashboardController extends Controller
         return view('dashboard', compact('table_data', 'lastWeekCnt', 'lastWeekPrice', 'thisWeekCnt', 'thisWeekPrice', 'nextWeekCnt', 'nextWeekPrice',
             'lastMonthCnt', 'lastMonthPrice', 'thisMonthCnt', 'thisMonthPrice', 'nextMonthCnt', 'nextMonthPrice', 'notifications'));
     }
+    public function indexNoti(){
+        $data = Notification::where('status', 2)->orderBy('created_at', 'desc')->get()->take(3);
+        $notifications = array();
+        foreach ($data as $item){
+            $tmp['id'] = $item->id;
+            $tmp['title'] = $item->title;
+            $tmp['content'] = $item->content;
+            $tmp['publish_time'] = $item->publish_time;
+            $nu = NotificationUser::where('user_id', Auth::user()->id)->where('notification_id', $item->id)->first();
+            $tmp['status'] = empty($nu) ? 0 : 1;
+            array_push($notifications, $tmp);
+        }
+        return view('dashboard-noti', compact('notifications'));
+    }
 }

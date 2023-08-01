@@ -82,6 +82,9 @@ class MenuController extends Controller
     public function menuDelete(Request $request){
         $id = $request->id;
         Menu::find($id)->update(['deleted_at' => date('Y-m-d H:i:s')]);
+        Menu::with('user')->whereHas('user', function ($query) use ($id){
+            $query->where('parent_menu', $id);
+        })->update(['deleted_at' => date('Y-m-d H:i:s')]);
         return response()->json(['status' => true]);
     }
 }

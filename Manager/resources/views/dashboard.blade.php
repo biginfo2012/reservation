@@ -168,6 +168,7 @@
                 dom: "<'row'<'col-sm-12 col-md-5 d-flex'<'pat-5'p><'pat-7'i>l>>\n\t\t\t<'row'<'col-sm-12'tr>>",
                 lengthMenu: [20, 50, 100],
                 pageLength: 20,
+                order: [],
                 language: {
                     "decimal": "",
                     "emptyTable": "現在ありません",

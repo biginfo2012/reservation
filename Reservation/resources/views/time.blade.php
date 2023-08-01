@@ -156,16 +156,17 @@
 </div>
 <script>
     $('#back_menu').click(function () {
-        $('#menu_part').show();
+        $('#menu_part').show()
         $('#time_part').hide()
+        window.scrollTo(0, 0)
     })
     $('#next_week_btn').click(function () {
-        $('#first_week_part').hide();
-        $('#second_week_part').show();
+        $('#first_week_part').hide()
+        $('#second_week_part').show()
     })
     $('#prev_week_btn').click(function () {
-        $('#first_week_part').show();
-        $('#second_week_part').hide();
+        $('#first_week_part').show()
+        $('#second_week_part').hide()
     })
     $('a.reserveDate').click(function () {
         let reservation_unit = $('#reservation_unit').val()
@@ -186,14 +187,14 @@
             }
         }
         if(!show_alert){
+            let selected_date = $(this).data('month') + $(this).data('date') + "(" +  $(this).data('weekday') + ") " + $(this).data('time')
+            let reservation_time = $(this).data('month').replace("年", "-").replace("月", "-") + $(this).data('date').replace("日", "") + " " + $(this).data('time')
+            $('#reservation_time').val(reservation_time)
+            $('#visit_time').html(selected_date)
             $('#time_alert').hide()
             $('#user_part').show()
             $('#time_part').hide()
-            let selected_date = $(this).data('month') + $(this).data('date') + "(" +  $(this).data('weekday') + ") " + $(this).data('time')
-            let reservation_time = $(this).data('month').replace("年", "-").replace("月", "-") + $(this).data('date').replace("日", "") + " " + $(this).data('time')
-            console.log(reservation_time)
-            $('#reservation_time').val(reservation_time)
-            $('#visit_time').html(selected_date)
+            window.scrollTo(0, 0)
         }
     })
 </script>

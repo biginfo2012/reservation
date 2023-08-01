@@ -136,6 +136,7 @@
                     $('#reservation_code').html(response.reservation_code)
                     $('#confirm_part').hide()
                     $('#complete_part').show()
+                    window.scrollTo(0, 0)
                 } else {
                     toastr.warning("失敗しました。")
                 }
@@ -145,6 +146,7 @@
     $('#back_user').click(function () {
         $('#confirm_part').hide()
         $('#user_part').show()
+        window.scrollTo(0, 0)
     })
 </script>
 

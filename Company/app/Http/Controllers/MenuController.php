@@ -84,6 +84,7 @@ class MenuController extends Controller
                 'ask' => isset($request->ask) ? 1 : 0
             ];
             $menu_id = Menu::create($data)->id;
+            Menu::find($menu_id)->update(['order' => $menu_id]);
             MenuUser::create(['menu_id' => $menu_id,  'user_id' => Auth::user()->id]);
         }
         else{

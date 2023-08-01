@@ -11,20 +11,20 @@ function sendReservationCompleteManagerEmail($details, $email){
     //Mail::to($email)->send(new \App\Mail\SendReservationCompleteManagerEmail($details));
 }
 function sendReservationChangeShopEmail($details, $email){
-    //Mail::to($email)->send(new \App\Mail\SendReservationChangeShopEmail($details));
+    Mail::to($email)->send(new \App\Mail\SendReservationChangeShopEmail($details));
 }
 function sendReservationChangeManagerEmail($details, $email){
-    //Mail::to($email)->send(new \App\Mail\SendReservationChangeManagerEmail($details));
+    Mail::to($email)->send(new \App\Mail\SendReservationChangeManagerEmail($details));
 }
 function sendReservationCancelClientEmail($details, $email){
-    //Mail::to($email)->send(new \App\Mail\SendReservationCancelClientEmail($details));
+    Mail::to($email)->send(new \App\Mail\SendReservationCancelClientEmail($details));
 }
 function sendReservationCancelShopEmail($details, $email){
-    //Mail::to($email)->send(new \App\Mail\SendReservationCancelShopEmail($details));
+    Mail::to($email)->send(new \App\Mail\SendReservationCancelShopEmail($details));
 }
 function sendReservationCancelManagerEmail($details, $email){
-    //Mail::to($email)->send(new \App\Mail\SendReservationCancelManagerEmail($details));
+    Mail::to($email)->send(new \App\Mail\SendReservationCancelManagerEmail($details));
 }
 function sendReservationPreviousConfirmEmail($details, $email){
-    //Mail::to($email)->send(new \App\Mail\SendReservationPreviousConfirmEmail($details));
+    Mail::to($email)->send(new \App\Mail\SendReservationPreviousConfirmEmail($details));
 }

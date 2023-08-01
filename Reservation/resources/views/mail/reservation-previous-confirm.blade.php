@@ -1,7 +1,9 @@
 <h2>【{{$details['shop_name']}}】 前日予約確認のお知らせ</h2>
 <p>{{$details['last_name']. " " . $details['first_name']}}さま</p>
 <br>
-<p>以下の通り明日予約を承っております。以下予約の詳細になります。</p>
+<p>明日予約を承っております。<br>
+    予約の詳細になります。
+</p>
 <br>
 <p>店舗：{{$details['shop_name']}}</p>
 <p>予約番号：{{$details['reservation_code']}}</p>
@@ -20,7 +22,7 @@
     ※予約のキャンセルを行う場合は、下記URLからキャンセル処理を行って下さい。<br>
     尚、予約の変更を行う場合は当予約のキャンセルを行ってから再度予約を行って頂きます様お願い申し上げます。
 </p>
-<p>{{route('reservation-cancel', $details['reservation_code'])}}</p>
+<p>https://www.makidume-yoyaku.com/reservation/cancel/{{$details['reservation_code']}}</p>
 <br>
 <p>※ご予約をキャンセルされる場合は {{$details['cancel_time']}} までにお願いします。</p>
 <br>

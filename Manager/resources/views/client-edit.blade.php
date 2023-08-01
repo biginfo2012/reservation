@@ -259,6 +259,7 @@
                 dom: "<'row'<'col-sm-12 col-md-5 d-flex'<'pat-5'p><'pat-7'i>l>>\n\t\t\t<'row'<'col-sm-12'tr>>",
                 lengthMenu: [20, 50, 100],
                 pageLength: 20,
+                order: [],
                 language: {
                     "decimal": "",
                     "emptyTable": "現在ありません",
@@ -306,7 +307,7 @@
                         $('#email').val(data['client']['email'])
                         let menus = ''
                         for(let i = 0; i < data['menu'].length; i++){
-                            menus = menus + data['menu'][i]['menu']['menu_name'] + '\n' + data['menu'][i]['menu']['description'] + '\n'
+                            menus = menus + data['menu'][i]['menu']['menu_name'] + '\n'
                         }
                         $('#reservation_menu').val(menus)
                         let price = 0

@@ -306,7 +306,7 @@
                         $('#email').val(data['client']['email'])
                         let menus = ''
                         for(let i = 0; i < data['menu'].length; i++){
-                            menus = menus + data['menu'][i]['menu']['menu_name'] + '\n' + data['menu'][i]['menu']['description'] + '\n'
+                            menus = menus + data['menu'][i]['menu']['menu_name'] + '\n'
                         }
                         $('#reservation_menu').val(menus)
                         let price = 0

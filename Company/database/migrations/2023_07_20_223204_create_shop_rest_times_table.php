@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateShopSettingsTable extends Migration
+class CreateShopRestTimesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,10 @@ class CreateShopSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('shop_settings', function (Blueprint $table) {
+        Schema::create('shop_rest_times', function (Blueprint $table) {
             $table->id();
             $table->integer('shop_id');
-            $table->string('image_url');
-            $table->integer('start_time');
-            $table->integer('end_time');
-            $table->integer('reservation_unit');
-            $table->tinyInteger('rest_day');
-            $table->integer('accept_people');
+            $table->dateTime('rest_time');
             $table->timestamps();
         });
     }
@@ -33,6 +28,6 @@ class CreateShopSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shop_settings');
+        Schema::dropIfExists('shop_rest_times');
     }
 }

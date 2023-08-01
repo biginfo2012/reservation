@@ -50,9 +50,10 @@
                 <input type="hidden" value="{{$item['note']}}" class="note">
                 <input type="hidden" value="{{$item['over']}}" class="over">
                 <input type="hidden" value="{{$item['ask']}}" class="ask">
+                <input type="hidden" value="{{$item['user']['parent_menu']}}" class="parent_menu">
                 <button class="btn btn-outline-dark waves-effect ex_change edit-menu" style="padding: 8px; margin: 5px;"
                         data-id="{{$item['id']}}" data-code="{{$item['menu_code']}}" data-display="{{$item['display']}}">{{__('edit')}}</button>
-                <button class="btn btn-outline-dark waves-effect ex_change delete-menu" style="padding: 8px; margin: 5px;" data-id="{{$item['id']}}">{{__('delete')}}</button>
+                <button class="btn btn-outline-dark waves-effect ex_change delete-menu" style="padding: 8px; margin: 5px;" data-id="{{$item['id']}}" {{empty($item['user']['parent_menu']) ? '' : 'disabled'}}>{{__('delete')}}</button>
             </td>
         </tr>
     @endforeach

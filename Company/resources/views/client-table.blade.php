@@ -23,7 +23,7 @@
             <td class="p-0 border text-left align-middle px-1">{{$item['gender'] == 1 ? __('female') : __('male')}}</td>
             <td class="p-0 border text-center align-middle">
                 <a href="{{route('client-edit', $item['id'])}}" class="btn btn-outline-dark waves-effect ex_change edit-shop"
-                   style="padding: 8px; margin: 5px;">{{__('edit')}}</a>
+                   style="padding: 8px; margin: 5px;">{{__('detail')}}</a>
             </td>
         </tr>
     @endforeach

@@ -17,7 +17,7 @@
                             <div class="row">
                                 <div class="mb-1 col-md-6">
                                     <div class="mb-1 row">
-                                        <label for="client-id" class="col-sm-4 col-form-label-lg text-end">{{__('super-admin')}}</label>
+                                        <label for="client-id" class="col-sm-4 col-form-label-lg text-end">{{__('user-name')}}</label>
                                         <div class="col-sm-8" style="padding-left: 0">
                                             <input type="text" id="client-id" class="form-control" name="client_id"
                                                    placeholder="" value="{{$user->name}}" disabled

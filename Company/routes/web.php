@@ -25,9 +25,11 @@ Route::get('/', function () {
 });
 Route::group(['middleware' => 'auth'], function (){
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('dashboard-noti', [DashboardController::class, 'indexNoti'])->name('dashboard-noti');
 
     Route::get('reservation-list', [ReservationController::class, 'index'])->name('reservation-list');
     Route::post('reservation-table', [ReservationController::class, 'reservationTable'])->name('reservation-table');
+    Route::post('reservation-rest-time', [ReservationController::class, 'reservationRestTime'])->name('reservation-rest-time');
     Route::get('reservation-edit/{id}', [ReservationController::class, 'reservationEdit'])->name('reservation-edit');
     Route::post('reservation-get', [ReservationController::class, 'reservationGet'])->name('reservation-get');
     Route::post('/cancel-reservation-mail', [ReservationController::class, 'reservationCancelMail'])->name('cancel-reservation-mail');
@@ -58,6 +60,7 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('shop-setting', [ShopController::class, 'shopSetting'])->name('shop-setting');
     Route::post('change-setting', [ShopController::class, 'changeSetting'])->name('change-setting');
     Route::post('shop-image', [ShopController::class, 'shopImage'])->name('shop-image');
+    Route::get('shop-image-delete', [ShopController::class, 'shopImageDelete'])->name('shop-image-delete');
 
     Route::get('my-page', [MyController::class, 'index'])->name('my-page');
     Route::post('change-password', [MyController::class, 'changePassword'])->name('change-password');

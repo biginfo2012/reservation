@@ -9,7 +9,7 @@ class Shop extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id', 'shop_code', 'shop_name', 'post_code', 'address_1', 'address_2', 'phone', 'represent', 'represent_phone', 'note', 'deleted_at'
+        'user_id', 'shop_code', 'shop_name', 'post_code', 'address_1', 'address_2', 'phone', 'represent', 'represent_phone', 'note', 'deleted_at', 'my_note'
     ];
     public function user(){
         return $this->hasOne(User::class, 'id', 'user_id');

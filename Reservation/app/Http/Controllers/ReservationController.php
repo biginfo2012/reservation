@@ -7,6 +7,7 @@ use App\Models\Menu;
 use App\Models\Reservation;
 use App\Models\ReservationMenu;
 use App\Models\Shop;
+use App\Models\ShopRestTime;
 use App\Models\ShopSetting;
 use App\Models\ShopTempRest;
 use App\Models\User;
@@ -22,9 +23,7 @@ class ReservationController extends Controller
         $user_id = $shop->user_id;
         $menus = Menu::with('user')->whereHas('user', function ($query) use ($user_id){
             $query->where('user_id', $user_id);
-        })->whereNull('deleted_at')->orderBy('order')->get();
-        $today = date('Y-m-d');
-        $end_first_week = date('Y-m-d', strtotime('+6 days'));
+        })->whereNull('deleted_at')->where('display', 1)->orderBy('order')->get();
         $first_week_divide = false;
         $first_week_month = date('Y') . '年' . date('n') . '月';
         $first_week_divide_month = date('Y') . '年' . date('n') . '月';
@@ -40,7 +39,6 @@ class ReservationController extends Controller
             date('j', strtotime('+5 day')) . '日', date('j', strtotime('+6 day')) . '日',
         ];
 
-        $end_second_week = date('Y-m-d', strtotime('+13 days'));
         $second_week_month = date('Y', strtotime('+7 days')) . '年' . date('n', strtotime('+7 days')) . '月';
         $second_week_divide_month = date('Y', strtotime('+7 days')) . '年' . date('n', strtotime('+7 days')) . '月';
         $second_week_divide = false;
@@ -76,16 +74,20 @@ class ReservationController extends Controller
         $start_time = 0;
         $end_time = 1440;
         $reservation_unit = 30;
-        $rest_day = null;
+        $rest_day = [];
+        $accept_people = 1;
         if(!empty($shop_setting)){
             $start_time = $shop_setting->start_time;
             $end_time = $shop_setting->end_time;
             $reservation_unit = $shop_setting->reservation_unit;
-            $rest_day = $shop_setting->rest_day;
+            if(!empty($shop_setting->rest_day)){
+                $rest_day = explode(',', $shop_setting->rest_day);
+            }
+            $accept_people = $shop_setting->accept_people;
         }
         $time = $start_time;
         while($time < $end_time){
-            $hour_str = $time/60 < 10 ? "0" . $time/60 : $time/60;
+            $hour_str = $time/60 < 10 ? "0" . (int)($time/60) : (int)($time/60);
             $min_str = $time%60 < 10 ? "0" . $time%60 : $time%60;
             $time_str = $hour_str . ":" . $min_str;
             array_push($time_array, $time_str);
@@ -93,6 +95,69 @@ class ReservationController extends Controller
         }
         $first_week_arr = [];
         $second_week_arr = [];
+        $first_cnt_arr = [];
+        $second_cnt_arr = [];
+        for($i = 0, $iMax = count($time_array); $i < $iMax; $i++) {
+            $tmp1 = [];
+            $tmp2 = [];
+            for ($j = 0; $j < 7; $j++) {
+                $strtotime1 = $j . " days";
+                $i2 = $j + 7;
+                $strtotime2 = $i2 . " days";
+                $date1 = date('Y-m-d', strtotime($strtotime1));
+                $date2 = date('Y-m-d', strtotime($strtotime2));
+                $reservation1 = Reservation::with('menu')->whereNull('deleted_at')->where('shop_id', $shop->id)
+                    ->where('reservation_time', '>=', $date1 . " 00:00:00")->where('reservation_time', '<=', $date1 . " 23:59:59")
+                    ->get();
+                $reservation2 = Reservation::with('menu')->whereNull('deleted_at')->where('shop_id', $shop->id)
+                    ->where('reservation_time', '>=', $date2 . " 00:00:00")->where('reservation_time', '<=', $date2 . " 23:59:59")
+                    ->get();
+                $cnt1 = 0;
+                $cnt2 = 0;
+                foreach ($reservation1 as $item){
+                    $reservation_time = $item->reservation_time;
+                    $require_time = 0;
+                    foreach ($item['menu'] as $reservation_menu){
+                        $require_time += $reservation_menu['menu']['require_time'];
+                    }
+                    $s_time = date('H:i', strtotime($reservation_time));
+                    $s_arr = explode(":", $s_time);
+                    $s_int = (int)($s_arr[0]) * 60 + $s_arr[1];
+                    $e_int = $s_int + $require_time;
+                    $time_arr = explode(":", $time_array[$i]);
+                    $time_int = (int)($time_arr[0]) * 60 + $time_arr[1];
+                    if($time_int == $s_int){
+                        $cnt1++;
+                    }
+                    else if($time_int > $s_int && $time_int < $e_int){
+                        $cnt1++;
+                    }
+                }
+                array_push($tmp1, $cnt1);
+                foreach ($reservation2 as $item){
+                    $reservation_time = $item->reservation_time;
+                    $require_time = 0;
+                    foreach ($item['menu'] as $reservation_menu){
+                        $require_time += $reservation_menu['menu']['require_time'];
+                    }
+                    $s_time = date('H:i', strtotime($reservation_time));
+                    $s_arr = explode(":", $s_time);
+                    $s_int = (int)($s_arr[0]) * 60 + $s_arr[1];
+                    $e_int = $s_int + $require_time;
+                    $time_arr = explode(":", $time_array[$i]);
+                    $time_int = (int)($time_arr[0]) * 60 + $time_arr[1];
+                    if($time_int == $s_int){
+                        $cnt2++;
+                    }
+                    else if($time_int > $s_int && $time_int < $e_int){
+                        $cnt2++;
+                    }
+                }
+                array_push($tmp2, $cnt2);
+            }
+            array_push($first_cnt_arr, $tmp1);
+            array_push($second_cnt_arr, $tmp2);
+        }
         for($i = 0, $iMax = count($time_array); $i < $iMax; $i++){
             $tmp1 = [];
             $tmp2 = [];
@@ -101,7 +166,7 @@ class ReservationController extends Controller
                 if($index > 6){
                     $index = $index - 7;
                 }
-                if($index == $rest_day){
+                if(in_array($index, $rest_day)){
                     array_push($tmp1, 0);
                     array_push($tmp2, 0);
                 }
@@ -113,13 +178,8 @@ class ReservationController extends Controller
                     $date2 = date('Y-m-d', strtotime($strtotime2));
                     $shop_temp1 = ShopTempRest::where('shop_id', $shop->id)->where('temp_rest', $date1)->first();
                     $shop_temp2 = ShopTempRest::where('shop_id', $shop->id)->where('temp_rest', $date2)->first();
-                    $time_str = $time_array[$i] . ":00";
-                    $date1 = $date1 . " " . $time_str;
-                    $date2 = $date2 . " " . $time_str;
-                    $reservation1 = Reservation::with('menu')->whereNull('deleted_at')->where('shop_id', $shop->id)
-                        ->where('reservation_time', $date1)->first();
-                    $reservation2 = Reservation::with('menu')->whereNull('deleted_at')->where('shop_id', $shop->id)
-                        ->where('reservation_time', $date2)->first();
+                    $shop_rest1 = ShopRestTime::where('shop_id', $shop->id)->where('rest_time', $date1 . " " . $time_array[$i] . ":00")->first();
+                    $shop_rest2 = ShopRestTime::where('shop_id', $shop->id)->where('rest_time', $date2 . " " . $time_array[$i] . ":00")->first();
                     if($j == 0){
                         $h3 = date("G", strtotime("+3 hours"));
                         $h = (int)substr($time_array[$i], 0, 2);
@@ -130,7 +190,10 @@ class ReservationController extends Controller
                             if(isset($shop_temp1) && !empty($shop_temp1)){
                                 array_push($tmp1, 0);
                             }
-                            else if(isset($reservation1) && !empty($reservation1)){
+                            else if(isset($shop_rest1) && !empty($shop_rest1)){
+                                array_push($tmp1, 0);
+                            }
+                            else if($first_cnt_arr[$i][$j] >= $accept_people){
                                 array_push($tmp1, 0);
                             }
                             else{
@@ -142,7 +205,10 @@ class ReservationController extends Controller
                         if(isset($shop_temp1) && !empty($shop_temp1)){
                             array_push($tmp1, 0);
                         }
-                        else if(isset($reservation1) && !empty($reservation1)){
+                        else if(isset($shop_rest1) && !empty($shop_rest1)){
+                            array_push($tmp1, 0);
+                        }
+                        else if($first_cnt_arr[$i][$j] >= $accept_people){
                             array_push($tmp1, 0);
                         }
                         else{
@@ -153,7 +219,10 @@ class ReservationController extends Controller
                     if(isset($shop_temp2) && !empty($shop_temp2)){
                         array_push($tmp2, 0);
                     }
-                    else if(isset($reservation2) && !empty($reservation2)){
+                    else if(isset($shop_rest2) && !empty($shop_rest2)){
+                        array_push($tmp2, 0);
+                    }
+                    else if($second_cnt_arr[$i][$j] >= $accept_people){
                         array_push($tmp2, 0);
                     }
                     else{
@@ -179,15 +248,14 @@ class ReservationController extends Controller
         $data['first_week_arr'] = $first_week_arr;
         $data['second_week_arr'] = $second_week_arr;
         $data['reservation_unit'] = $reservation_unit;
-//        print_r($time_array);
-//        die();
         return view('reservation', compact('shop', 'shop_setting', 'menus', 'data'));
     }
     public function reservationAdd(Request $request){
         $shop_id = $request->shop_id;
         $shop_code = Shop::find($shop_id)->shop_code;
         $today = date('Y-m-d');
-        $reservation = Reservation::where('shop_id', $shop_id)->where('reservation_time', '>=', $today . " 00:00:00")->where('reservation_time', '<=', $today . " 23:59:59")
+        $reservation_date = date('Y-m-d', strtotime($request->reservation_time));
+        $reservation = Reservation::where('shop_id', $shop_id)->where('reservation_time', '>=', $reservation_date . " 00:00:00")->where('reservation_time', '<=', $reservation_date . " 23:59:59")
             ->orderBy('created_at', 'DESC')->first();
         $number = 0;
         if(isset($reservation) && !empty($reservation)){

@@ -32,6 +32,7 @@ function getTableData(url) {
                     dom: "<'row'<'col-sm-12 col-md-5 d-flex'<'pat-5'p><'pat-7'i>l>>\n\t\t\t<'row'<'col-sm-12'tr>>",
                     lengthMenu: [20, 50, 100],
                     pageLength: 20,
+                    order: [],
                     language: {
                         "decimal": "",
                         "emptyTable": "現在ありません",
@@ -74,22 +75,11 @@ function getTableDataReservation(url) {
                 $('#table-part').html(response)
                 var t = $('#table')
                 t.DataTable({
+                    responsive: !0,
                     dom: "<'row'<'col-sm-12 col-md-5 d-flex'<'pat-5'p><'pat-7'i>l>>\n\t\t\t<'row'<'col-sm-12'tr>>",
                     lengthMenu: [20, 50, 100],
                     pageLength: 20,
-                    bAutoWidth: false,
-                    aoColumns : [
-                        { sWidth: '15%' },
-                        { sWidth: '10%' },
-                        { sWidth: '10%' },
-                        { sWidth: '10%' },
-                        { sWidth: '15%' },
-                        { sWidth: '5%' },
-                        { sWidth: '10%' },
-                        { sWidth: '5%' },
-                        { sWidth: '15%' },
-                        { sWidth: '5%' }
-                    ],
+                    order: [],
                     language: {
                         "decimal": "",
                         "emptyTable": "現在ありません",
@@ -110,7 +100,13 @@ function getTableDataReservation(url) {
                             "previous": "前へ"
                         },
                     },
-                })
+                    columnDefs: [
+                        {
+                            targets: [0],  // this will target the first column
+                            width: '100px'
+                        }
+                    ]
+                });
             },
             error: function () {
 

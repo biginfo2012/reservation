@@ -11,24 +11,7 @@
                         </div>
                         <div class="card-body pt-0">
                             <div class="row">
-                                <div class="my-0 col-md-12">
-                                    <table class="table table-separate table-head-custom table-checkable" id="noti_table">
-                                        <tbody>
-                                        @foreach($notifications as $item)
-                                            <tr class="{{$item['status'] == 0 ? 'color-red-tmp' : ''}}">
-                                                <input type="hidden" value="{{$item['title']}}" class="title">
-                                                <input type="hidden" value="{{date('Y/m/d H:i', strtotime($item['publish_time']))}}" class="publish_time">
-                                                <input type="hidden" value="{{$item['content']}}" class="content">
-                                                <td class="p-0 border text-start align-middle px-1">{{date('Y/m/d H:i', strtotime($item['publish_time']))}}</td>
-                                                <td class="p-0 border text-start align-middle px-1">{{$item['title']}}</td>
-                                                <td class="p-0 border text-center align-middle px-1">
-                                                    <button class="btn btn-outline-dark waves-effect show_noti {{$item['status'] == 0 ? 'color-red-tmp' : ''}}"
-                                                           data-id="{{$item['id']}}" style="padding: 8px; margin: 5px;">{{__('detail')}}</button>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
+                                <div class="my-0 col-md-12" id="table_part">
                                 </div>
                             </div>
                         </div>
@@ -154,7 +137,7 @@
                 <div class="col-xl-12 col-md-12 col-12">
                     <div class="card card-statistics">
                         <div class="card-header">
-                            <h4 class="card-title">{{__('reservation-by-shop')}}</h4>
+                            <h4 class="card-title">{{__('reservation-today')}}</h4>
                             <div class="d-flex align-items-center">
                                 <p class="card-text font-medium-1 me-25 mb-0">{{__('date')}}: {{date('Y年m月d日')}}</p>
                             </div>
@@ -177,9 +160,9 @@
                                         <tbody>
                                         @foreach($table_data as $index => $item)
                                             <tr>
-                                                <td class="p-0 border text-left align-middle px-1 text-ellipsis" width="10">{{$item['client']['last_name'] . $item['client']['first_name']}}</td>
-                                                <td class="p-0 border text-left align-middle px-1 text-ellipsis" width="10">{{date('Y/m/d H:i', strtotime($item['reservation_time']))}}</td>
-                                                <td class="p-0 border text-center align-middle" width="5">
+                                                <td class="p-1 border text-left align-middle px-1 text-ellipsis" width="10">{{$item['client']['last_name'] . $item['client']['first_name']}}</td>
+                                                <td class="p-1 border text-left align-middle px-1 text-ellipsis" width="10">{{date('Y/m/d H:i', strtotime($item['reservation_time']))}}</td>
+                                                <td class="p-1 border text-center align-middle" width="5">
                                                     @php
                                                         $price = 0;
                                                         foreach($item['menu'] as $reservation_menu) {
@@ -188,16 +171,16 @@
                                                         echo number_format($price)
                                                     @endphp
                                                 </td>
-                                                <td class="p-0 border text-center align-middle" width="10">@php
+                                                <td class="p-1 border text-center align-middle" width="10">@php
                                                         $require_time = 0;
                                                         foreach($item['menu'] as $reservation_menu) {
                                                             $require_time += $reservation_menu['menu']['require_time'];
                                                         }
                                                         echo $require_time
                                                     @endphp</td>
-                                                <td class="p-0 border text-left align-middle px-1" width="10">{{$item['client']['phone']}}</td>
-                                                <td class="p-0 border text-left align-middle px-1" width="5">{{$item['client']['is_first'] == 1 ? __('first') : __('twice')}}</td>
-                                                <td class="p-0 border text-left align-middle px-1 whitespace-nowrap overflow-hidden"
+                                                <td class="p-1 border text-left align-middle px-1" width="10">{{$item['client']['phone']}}</td>
+                                                <td class="p-1 border text-left align-middle px-1" width="5">{{$item['client']['is_first'] == 1 ? __('first') : __('twice')}}</td>
+                                                <td class="p-1 border text-left align-middle px-1 whitespace-nowrap overflow-hidden"
                                                     style="overflow:hidden !important; white-space: nowrap; text-overflow: ellipsis" width="15">{{$item['note']}}</td>
                                             </tr>
                                         @endforeach
@@ -238,7 +221,7 @@
                         <div class="row">
                             <div class="col-12 text-center">
                                 <label class="btn waves-effect background-dark-blue color-white cursor-pointer me-1"
-                                       tabindex="15" data-bs-dismiss="modal" aria-label="Close">{{__('close')}}</label>
+                                       tabindex="15" data-bs-dismiss="modal" aria-label="Close" id="close_noti">{{__('close')}}</label>
                             </div>
                         </div>
                     </div>
@@ -249,7 +232,7 @@
     </div>
     <script>
         $(document).ready(function (){
-            var t = $('#table');
+            var t = $('#table')
             t.DataTable({
                 responsive: !0,
                 dom: "<'row'<'col-sm-12 col-md-5 d-flex'<'pat-5'p><'pat-7'i>l>>\n\t\t\t<'row'<'col-sm-12'tr>>",
@@ -275,8 +258,30 @@
                         "previous": "前へ"
                     },
                 },
-            });
+            })
+            getTableDataNoti()
+            $('#close_noti').click(function () {
+                getTableDataNoti()
+            })
         })
+        function getTableDataNoti(){
+            $('#table_part').empty()
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': token
+                }
+            })
+            $.ajax({
+                url: '{{route('dashboard-noti')}}',
+                type:'get',
+                success: function (response) {
+                    $('#table_part').html(response)
+                },
+                error: function () {
+
+                }
+            })
+        }
         $(document).on('click', '.show_noti', function () {
             let id = $(this).data('id')
             $.ajaxSetup({

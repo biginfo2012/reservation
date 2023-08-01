@@ -70,7 +70,7 @@ class ShopController extends Controller
                 'phone' => $request->phone,
                 'represent' => $request->represent,
                 'represent_phone' => $request->represent_phone,
-                'note' => $request->note,
+                'my_note' => $request->note,
             ];
             Shop::find($id)->update($data);
         }
@@ -91,7 +91,7 @@ class ShopController extends Controller
                 'phone' => $request->phone,
                 'represent' => $request->represent,
                 'represent_phone' => $request->represent_phone,
-                'note' => $request->note,
+                'my_note' => $request->note,
             ];
             Shop::create($data);
         }
@@ -110,21 +110,31 @@ class ShopController extends Controller
         $shop = Shop::where('user_id', $user_id)->first();
         $email = Auth::user()->email;
         $shop_setting = ShopSetting::where('shop_id', $shop->id)->first();
-        $shop_temp_this_month = ShopTempRest::where('shop_id', $shop->id)->where('temp_rest', '>=', date('Y-m-01'))->where('temp_rest', '<=', date('Y-m-t', strtotime(date('Y-m-d'))))->get();
+        $shop_temp_this_month = ShopTempRest::where('shop_id', $shop->id)->where('temp_rest', '>=', date('Y-m-01'))->where('temp_rest', '<=', date('Y-m-t', strtotime('+1 month')))->get();
         $shop_temp_all = ShopTempRest::where('shop_id', $shop->id)->get();
         $weekdays = ['月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日', '日曜日'];
         $shop_rest_day = "";
-        if(!empty($shop_setting) && isset($shop_setting->rest_day)){
-            $shop_rest_day = $weekdays[$shop_setting->rest_day];
+        $shop_rest_arr = [];
+        if(!empty($shop_setting) && !empty($shop_setting->rest_day)){
+            $shop_rest_day = explode(',', $shop_setting->rest_day);
+            $shop_rest_arr = explode(',', $shop_setting->rest_day);
+            for($i = 0; $i < count($shop_rest_day); $i++){
+                $shop_rest_day[$i] = $weekdays[$shop_rest_day[$i]];
+            }
+            $shop_rest_day = implode(',', $shop_rest_day);
         }
-        return view('shop-setting', compact('shop', 'email', 'shop_setting', 'shop_temp_this_month', 'shop_temp_all', 'shop_rest_day'));
+        return view('shop-setting', compact('shop', 'email', 'shop_setting', 'shop_temp_this_month', 'shop_temp_all', 'shop_rest_day', 'shop_rest_arr'));
     }
 
     public function changeSetting(Request $request){
         $start_time = $request->start_time_hour * 60 + $request->start_time_min;
         $end_time = $request->end_time_hour * 60 + $request->end_time_min;
         $reservation_unit = $request->reservation_unit;
-        $rest_day = $request->rest_day;
+        $rest_day = null;
+        if(isset($request->rest_day)){
+            $rest_day = implode(',', $request->rest_day);
+        }
+
         $accept_people = $request->accept_people;
         $shop_setting = ShopSetting::where('shop_id', $request->id)->first();
         if(isset($shop_setting)){
@@ -150,9 +160,9 @@ class ShopController extends Controller
         }
         if (!empty($request->temp_rest_day)){
             $tmp_arr = explode(',', $request->temp_rest_day);
-            ShopTempRest::where('shop_id', $request->id)->delete();
-            for($i = 0; $i < count($tmp_arr); $i++){
-                $tmp_day = date('Y-m') . '-' . $tmp_arr[$i];
+            ShopTempRest::where('shop_id', $request->id)->where('temp_rest', '>=', date('Y-m-01'))->where('temp_rest', '<=', date('Y-m-t', strtotime('+1 month')))->delete();
+            for($i = 0, $iMax = count($tmp_arr); $i < $iMax; $i++){
+                $tmp_day = date('Y') . '-' . $tmp_arr[$i];
                 ShopTempRest::create(['shop_id' => $request->id, 'temp_rest' => $tmp_day]);
             }
         }
@@ -163,9 +173,7 @@ class ShopController extends Controller
         $this->validate($request, [
             'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ]);
-
         $imageName = time().'.'.$request->image->extension();
-
         $request->image->move(public_path('image'), $imageName);
         $shop_setting = ShopSetting::where('shop_id', $request->id)->first();
         if(isset($shop_setting)){
@@ -174,6 +182,13 @@ class ShopController extends Controller
         else{
             ShopSetting::create(['shop_id' => $request->id, 'image_url' => $imageName]);
         }
+        return response()->json(['status' => true]);
+    }
+
+    public function shopImageDelete(){
+        $user_id = Auth::user()->id;
+        $shop = Shop::where('user_id', $user_id)->first();
+        ShopSetting::where('shop_id', $shop->id)->update(['image_url' => null]);
         return response()->json(['status' => true]);
     }
 }

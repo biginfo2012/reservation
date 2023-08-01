@@ -100,7 +100,7 @@
                             </div>
                             <div class="col-6">
                                 <div class="row">
-                                    <label for="require_time" class="col-sm-4 col-form-label-lg pe-0">
+                                    <label for="require_time" class="col-sm-4 col-form-label-lg pe-0 mt-0 mb-auto">
                                         {{__('require-time')}}</label>
                                     <div class="col-sm-8" style="padding-left: 0">
                                         <input type="text" id="require_time" class="form-control" name="require_time"
@@ -329,6 +329,14 @@
             $('input:radio[name="display"]').filter('[value=' + display + ']').attr('checked', true)
             $('#note').val($(this).parent().find('input.note[type=hidden]').val())
             let over = $(this).parent().find('input.over[type=hidden]').val()
+            let parent_menu = $(this).parent().find('input.parent_menu[type=hidden]').val()
+            console.log(parent_menu)
+            if(parent_menu != ""){
+                $('#btn_delete').prop('disabled', true)
+            }
+            else{
+                $('#btn_delete').prop('disabled', false)
+            }
             if(over == 1) {
                 $('#over').prop('checked', true)
             }

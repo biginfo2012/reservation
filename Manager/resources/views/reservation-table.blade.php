@@ -16,33 +16,33 @@
     <tbody>
     @foreach($data as $index => $item)
         <tr>
-            <td class="p-0 border text-center align-middle">{{$item['reservation_code']}}</td>
+            <td class="p-0 border text-left align-middle px-1">{{$item['reservation_code']}}</td>
             <td class="p-0 border text-left align-middle px-1">{{$item['shop']['shop_name']}}</td>
             <td class="p-0 border text-left align-middle px-1 text-ellipsis">{{$item['client']['last_name'] . $item['client']['first_name']}}</td>
             <td class="p-0 border text-left align-middle px-1">{{$item['client']['phone']}}</td>
             <td class="p-0 border text-left align-middle px-1">{{$item['client']['email']}}</td>
             <td class="p-0 border text-left align-middle px-1">{{$item['client']['is_first'] == 1 ? __('first') : __('twice')}}</td>
-            <td class="p-0 border text-center align-middle">@php
+            <td class="p-0 border text-left align-middle px-1">@php
                     $require_time = 0;
                     foreach($item['menu'] as $reservation_menu) {
                         $require_time += $reservation_menu['menu']['require_time'];
                     }
-                    echo $require_time
+                    echo $require_time . __('min')
                 @endphp</td>
-            <td class="p-0 border text-center align-middle">
+            <td class="p-0 border text-left align-middle px-1">
                 @php
                     $price = 0;
                     foreach($item['menu'] as $reservation_menu) {
                         $price += $reservation_menu['menu']['price'];
                     }
-                    echo number_format($price)
+                    echo number_format($price) . __('en-char')
                 @endphp
             </td>
             <td class="p-0 border text-left align-middle px-1 whitespace-nowrap overflow-hidden"
                 style="overflow:hidden !important; white-space: nowrap; text-overflow: ellipsis">{{$item['note']}}</td>
             <td class="p-0 border text-center align-middle">
                 <a href="{{route('reservation-edit', $item['id'])}}" class="btn btn-outline-dark waves-effect ex_change edit-shop"
-                   style="padding: 8px; margin: 5px;">{{__('edit')}}</a>
+                   style="padding: 8px; margin: 5px;">{{__('detail')}}</a>
             </td>
         </tr>
     @endforeach

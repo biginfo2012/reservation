@@ -115,108 +115,104 @@
         if (this.checked) {
             // 8個以上チェック
             if ($('.selectCountLimitItem').length >= 8) {
-                alert('選択できるメニューは８個までです');
-                return false;
+                alert('選択できるメニューは８個までです')
+                return false
             }
-            var tr = $('#selectedMenu').clone().css('display', 'table-row');
-            tr.removeAttr('id');
-            tr.attr('id', 'selectedCheck'+$(this).val());
-            tr.attr('class', 'selectCountLimitItem');
+            var tr = $('#selectedMenu').clone().css('display', 'table-row')
+            tr.removeAttr('id')
+            tr.attr('id', 'selectedCheck'+$(this).val())
+            tr.attr('class', 'selectCountLimitItem')
             //名前
-            var name = $(this).closest('td.name').attr('name');
-            tr.find('.name').html('<span class="bold">' + name + '</span>');
+            var name = $(this).closest('td.name').attr('name')
+            tr.find('.name').html('<span class="bold">' + name + '</span>')
             //時間
-            var time = $(this).closest('td.name').find('.time').html();
-            tr.find('.time').html(time);
+            var time = $(this).closest('td.name').find('.time').html()
+            tr.find('.time').html(time)
             //価格
-            var price = $(this).closest('div.menu-name').next().find('.price').html();
-            tr.find('.price').html(price);
+            var price = $(this).closest('div.menu-name').next().find('.price').html()
+            tr.find('.price').html(price)
 
-            $('#totalTime').parent().before(tr);
+            $('#totalTime').parent().before(tr)
             //時間合計
-            var totalTime = parseInt($('#totalTime').attr('time')) + parseInt(time.replace('分', ''));
-            $('#totalTime').attr('time', totalTime).html(totalTime + '分');
+            var totalTime = parseInt($('#totalTime').attr('time')) + parseInt(time.replace('分', ''))
+            $('#totalTime').attr('time', totalTime).html(totalTime + '分')
 
             //価格合計
-            var priceHtml = price.replace(/[^0-9]/g, '');
-            var totalPrice = parseInt($('#totalPrice').attr('price')) + parseInt(priceHtml ? priceHtml : '0');
-            let isGoingPriceFlg = false;
+            var priceHtml = price.replace(/[^0-9]/g, '')
+            var totalPrice = parseInt($('#totalPrice').attr('price')) + parseInt(priceHtml ? priceHtml : '0')
+            let isGoingPriceFlg = false
             $('.selected.price').each(function(index, element) {
                 if (/要問合せ$/.test($(element).text().trim())) {
-                    isGoingPriceFlg = true;
-                    return false;
+                    isGoingPriceFlg = true
+                    return false
                 }
             })
             if (isGoingPriceFlg) {
                 // 要問合せの場合
-                $('#totalPrice').attr('goingPrice', 1).html('要問合せ');
+                $('#totalPrice').attr('goingPrice', 1).html('要問合せ')
             } else {
-                let waveDispFlg = false;
+                let waveDispFlg = false
                 $('.selected.price').each(function(index, element) {
                     if (/～$/.test($(element).text().trim())) {
-                        waveDispFlg = true;
-                        return false;
+                        waveDispFlg = true
+                        return false
                     }
                 })
                 if(waveDispFlg){
                     totalPrice += '~'
                 }
-                $('#totalPrice').attr('price', totalPrice).attr('goingPrice', 0).html('￥' + totalPrice.toLocaleString());
+                $('#totalPrice').attr('price', totalPrice).attr('goingPrice', 0).html('￥' + totalPrice.toLocaleString())
             }
 
         } else {
-            var target = $('#selectedCheck'+$(this).val());
-            var totalTime = parseInt($('#totalTime').attr('time')) - parseInt(target.find('.time').html().replace('分', ''));
-            var priceHtml = target.find('.price').html().replace(/[^0-9]/g, '');
-            var totalPrice = parseInt($('#totalPrice').attr('price')) - parseInt(priceHtml ? priceHtml : '0');
-            target.remove();
+            var target = $('#selectedCheck'+$(this).val())
+            var totalTime = parseInt($('#totalTime').attr('time')) - parseInt(target.find('.time').html().replace('分', ''))
+            var priceHtml = target.find('.price').html().replace(/[^0-9]/g, '')
+            var totalPrice = parseInt($('#totalPrice').attr('price')) - parseInt(priceHtml ? priceHtml : '0')
+            target.remove()
 
-            $('#totalTime').attr('time', totalTime).html(totalTime + '分');
+            $('#totalTime').attr('time', totalTime).html(totalTime + '分')
 
-            let isGoingPriceFlg = false;
+            let isGoingPriceFlg = false
             $('.selected.price').each(function(index, element) {
                 if (/要問合せ$/.test($(element).text().trim())) {
-                    isGoingPriceFlg = true;
-                    return false;
+                    isGoingPriceFlg = true
+                    return false
                 }
             })
             if (isGoingPriceFlg) {
                 // 要問合せのメニューがremoveされ、かつ要問い合わせメニューが全て未選択の場合
-                $('#totalPrice').attr('goingPrice', 1).html('要問合せ');
+                $('#totalPrice').attr('goingPrice', 1).html('要問合せ')
             } else {
-                let waveDispFlg = false;
+                let waveDispFlg = false
                 $('.selected.price').each(function(index, element) {
                     if (/～$/.test($(element).text().trim())) {
-                        waveDispFlg = true;
-                        return false;
+                        waveDispFlg = true
+                        return false
                     }
                 })
                 if(waveDispFlg){
                     totalPrice += '~'
                 }
-                $('#totalPrice').attr('price', totalPrice).attr('goingPrice', 0).html('￥' + totalPrice.toLocaleString());
+                $('#totalPrice').attr('price', totalPrice).attr('goingPrice', 0).html('￥' + totalPrice.toLocaleString())
             }
         }
     }
 
     $(function(){
-        $('input.menuCheck').click(inputMenuCheckClick);
+        $('input.menuCheck').click(inputMenuCheckClick)
         $('.nextButton').click(function(){
             if ($('input.menuCheck:checked').length === 0) {
                 $('#menu_alert').show()
-                return false;
+                return false
             }
-            $('#menu_alert').hide()
-            $('#menu_part').hide();
-            $('#time_part').show()
-            $('#selected_price').html($('#totalPrice').html());
-            $('#selected_time').html($('#totalTime').html());
-            $('#menu_price').html($('#totalPrice').html());
+            $('#selected_price').html($('#totalPrice').html())
+            $('#selected_time').html($('#totalTime').html())
+            $('#menu_price').html($('#totalPrice').html())
             $('#price_str').val($('#totalPrice').html())
-            $('#menu_time').html($('#totalTime').html());
+            $('#menu_time').html($('#totalTime').html())
             let menus = ""
             $('.selected.name').each(function(index, element) {
-                console.log(index)
                 if(index != 0){
                     if(index == $('.selected.name').length - 1){
                         menus += $(element).text().trim()
@@ -235,11 +231,14 @@
                     menu_ids += $(this).data('id') + ","
                 }
             })
-            console.log(menu_ids)
             $('#menu_ids').val(menu_ids)
             $('#menu_names').val(menus)
             $('#selected_menu').html(menus)
             $('#menu_confirm').html(menus)
+            $('#menu_alert').hide()
+            $('#menu_part').hide()
+            $('#time_part').show()
+            window.scrollTo(0, 0)
         });
         $('#refresh').click(function () {
             window.location.reload()

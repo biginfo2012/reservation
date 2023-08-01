@@ -93,7 +93,7 @@
                                                       data-index="7">@php
                                                     $desc = "";
                                                     foreach($data['menu'] as $reservation_menu) {
-                                                        $desc = $desc . $reservation_menu['menu']['menu_name'] . "\n" . $reservation_menu['menu']['description'] . "\n";
+                                                        $desc = $desc . $reservation_menu['menu']['menu_name'] . "\n";
                                                     }
                                                     echo $desc
                                                 @endphp</textarea>

@@ -137,8 +137,9 @@
 </div>
 <script>
     $('#back_time').click(function () {
-        $('#user_part').hide();
+        $('#user_part').hide()
         $('#time_part').show()
+        window.scrollTo(0, 0)
     })
     $('#to_confirm').click(function () {
         if ($('#userForm').valid()) {
@@ -155,11 +156,9 @@
             let email = $('#email').val()
             $('#confirm_email').html(email)
             let gender = $('input[name=gender]:checked').val()
-            console.log(gender)
             let confirm_gender = gender == "1" ? "女性" : (gender == "" ? "選択しない" : "男性")
             $('#confirm_gender').html(confirm_gender)
             let is_first = $('input[name=is_first]:checked').val()
-            console.log(is_first)
             let confirm_visit = is_first == "1" ? "初来店" : "再来店"
             $('#confirm_visit').html(confirm_visit)
             let request = $('#request').val()
@@ -169,8 +168,9 @@
                 $('#message').show()
                 return
             }
-            $('#user_part').hide();
+            $('#user_part').hide()
             $('#confirm_part').show()
+            window.scrollTo(0, 0)
         }
     })
 </script>
