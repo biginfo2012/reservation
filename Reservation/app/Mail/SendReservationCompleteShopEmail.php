@@ -28,7 +28,7 @@ class SendReservationCompleteShopEmail extends Mailable
      */
     public function build()
     {
-        return $this->subject('予約完了のお知らせ')
+        return $this->subject('予約受付のお知らせ')
             ->view('mail.reservation-complete-shop');
     }
 }

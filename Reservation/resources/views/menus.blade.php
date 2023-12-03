@@ -114,8 +114,8 @@
     var inputMenuCheckClick = function(){
         if (this.checked) {
             // 8個以上チェック
-            if ($('.selectCountLimitItem').length >= 8) {
-                alert('選択できるメニューは８個までです')
+            if ($('.selectCountLimitItem').length >= 1) {
+                alert('選択できるメニューは1個までです')
                 return false
             }
             var tr = $('#selectedMenu').clone().css('display', 'table-row')

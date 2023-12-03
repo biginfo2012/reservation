@@ -735,20 +735,20 @@
                             }
                         }
                     })
-                    if(temp_rest_day.length){
-                        Swal.fire({
-                            title: '臨時休業日',
-                            text: "臨時休業日を設定してください。",
-                            icon: 'warning',
-                            showCancelButton: false,
-                            confirmButtonText: 'はい',
-                            customClass: {
-                                confirmButton: 'btn background-dark-blue color-white',
-                            },
-                            buttonsStyling: false
-                        })
-                        return;
-                    }
+                    // if(temp_rest_day.length == 0){
+                    //     Swal.fire({
+                    //         title: '臨時休業日',
+                    //         text: "臨時休業日を設定してください。",
+                    //         icon: 'warning',
+                    //         showCancelButton: false,
+                    //         confirmButtonText: 'はい',
+                    //         customClass: {
+                    //             confirmButton: 'btn background-dark-blue color-white',
+                    //         },
+                    //         buttonsStyling: false
+                    //     })
+                    //     return;
+                    // }
                     paramObj.append('temp_rest_day', temp_rest_day)
                     $.ajaxSetup({
                         headers: {
@@ -922,11 +922,13 @@
                             }
                         }
                         if(temp_days.length > 0){
+                            console.log(temp_days)
                             for(let i = 0; i < temp_days.length; i++){
                                 let temp_rest = temp_days[i]['temp_rest']
                                 let tmp_arr = temp_rest.split('-')
+                                let tmp_month = parseInt(tmp_arr[1])
                                 let day = parseInt(tmp_arr[2])
-                                if(day == dateNumber) {
+                                if(day == dateNumber && tmp_month == r_month) {
                                     selectOption.selectedIndex = 0
                                     selectOption.classList.add('color-red-tmp')
                                 }
@@ -1035,7 +1037,8 @@
                                 let temp_rest = temp_days[i]['temp_rest']
                                 let tmp_arr = temp_rest.split('-')
                                 let day = parseInt(tmp_arr[2])
-                                if(day == dateNumber) {
+                                let tmp_month = parseInt(tmp_arr[1])
+                                if(day == dateNumber && tmp_month == r_month) {
                                     selectOption.selectedIndex = 0
                                     selectOption.classList.add('color-red-tmp')
                                 }

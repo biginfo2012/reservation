@@ -162,7 +162,7 @@
     "name": "氏名",
     "name-kana": "氏名（カナ）",
     "visit-history": "来店履歴",
-    "mail-caution": "迷惑メール防止フィルタを設定している場合、メールが届かないことがありますので「info@bm2.cynd.co.jp」からのメールが受信できるようドメインの設定をお願いします。",
+    "mail-caution": "迷惑メール防止フィルタを設定している場合、メールが届かないことがありますので「reserve@makidumespecialty.com」からのメールが受信できるようドメインの設定をお願いします。",
     "confirm-reservation": "予約を確定する",
     "complete-reservation": "予約が完了しました。",
     "reservation-code": "予約番号は",

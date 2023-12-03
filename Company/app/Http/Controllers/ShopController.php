@@ -166,6 +166,9 @@ class ShopController extends Controller
                 ShopTempRest::create(['shop_id' => $request->id, 'temp_rest' => $tmp_day]);
             }
         }
+        else{
+            ShopTempRest::where('shop_id', $request->id)->where('temp_rest', '>=', date('Y-m-01'))->where('temp_rest', '<=', date('Y-m-t', strtotime('+1 month')))->delete();
+        }
         return response()->json(['status' => true]);
     }
 

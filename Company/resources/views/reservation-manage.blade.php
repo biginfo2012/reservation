@@ -109,6 +109,7 @@
                                 <div id="second_week_part" style="display: none">
                                     <div id="time-btn">
                                         <a id="prev_week_btn" class="left-btn no2click">{{__('prev-week')}}</a>
+                                        <a id="next_week_btn2" class="right-btn no2click">{{__('next-week')}}</a>
                                     </div><!-- time-btn -->
 
                                     <div class="component">
@@ -140,6 +141,93 @@
                                                                 <a href="javascript:void(0);" data-week="{{$j}}" data-date="{{$data['second_week_days'][$j]}}" data-weekday="{{$data['weekdays'][$j]}}" data-time="{{$data['time_array'][$i]}}"
                                                                    data-month="{{$data['second_week_divide'] ? ($j + 1 > $data['second_week_divide_span'] ? $data['second_week_divide_month'] : $data['second_week_month']) : $data['second_week_month']}}"
                                                                    class="{{$data['second_week_arr'][$i][$j] == 0 ? 'off' : ($data['second_week_arr'][$i][$j] == 1 ? 'reserveDate maru' : 'reserveDate nai')}}">{{$data['second_week_arr'][$i][$j] == 1 ? '◎' : '×'}}</a>
+                                                            </td>
+                                                        @endfor
+                                                    </tr>
+                                                @endfor
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div><!-- component -->
+                                </div>
+                                <div id="third_week_part" style="display: none">
+                                    <div id="time-btn">
+                                        <a id="prev_week_btn3" class="left-btn no2click">{{__('prev-week')}}</a>
+                                        <a id="next_week_btn3" class="right-btn no2click">{{__('next-week')}}</a>
+                                    </div><!-- time-btn -->
+
+                                    <div class="component">
+                                        <div class="sticky-wrap">
+                                            <table class="sticky-enabled" style="margin: 0px;">
+                                                <thead>
+                                                <tr>
+                                                    <th rowspan="2" style="width:10% !important;">{{__('day-time')}}</th>
+                                                    <th colspan="{{$data['third_week_divide_span']}}">{{$data['third_week_month']}}</th>
+                                                    @if($data['third_week_divide'])
+                                                        <th colspan="{{7 - $data['third_week_divide_span']}}">{{$data['third_week_divide_month']}}</th>
+                                                    @endif
+                                                </tr>
+                                                <tr>
+                                                    @for($i = 0; $i < 7; $i++)
+                                                        <th style="width: 12%"
+                                                            class="{{$data['weekdays'][$i] == "土" ? 'sat' : ($data['weekdays'][$i] == "日" ? 'sun' : "")}}">{{$data['third_week_days'][$i]}}
+                                                            <br>（{{$data['weekdays'][$i]}}）
+                                                        </th>
+                                                    @endfor
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                @for($i = 0,$iMax = count($data['time_array']); $i < $iMax; $i++)
+                                                    <tr>
+                                                        <td class="time">{{$data['time_array'][$i]}}</td>
+                                                        @for($j = 0; $j < 7; $j++)
+                                                            <td>
+                                                                <a href="javascript:void(0);" data-week="{{$j}}" data-date="{{$data['third_week_days'][$j]}}" data-weekday="{{$data['weekdays'][$j]}}" data-time="{{$data['time_array'][$i]}}"
+                                                                   data-month="{{$data['third_week_divide'] ? ($j + 1 > $data['third_week_divide_span'] ? $data['third_week_divide_month'] : $data['third_week_month']) : $data['third_week_month']}}"
+                                                                   class="{{$data['third_week_arr'][$i][$j] == 0 ? 'off' : ($data['third_week_arr'][$i][$j] == 1 ? 'reserveDate maru' : 'reserveDate nai')}}">{{$data['third_week_arr'][$i][$j] == 1 ? '◎' : '×'}}</a>
+                                                            </td>
+                                                        @endfor
+                                                    </tr>
+                                                @endfor
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div><!-- component -->
+                                </div>
+                                <div id="four_week_part" style="display: none">
+                                    <div id="time-btn">
+                                        <a id="prev_week_btn4" class="left-btn no2click">{{__('prev-week')}}</a>
+                                    </div><!-- time-btn -->
+
+                                    <div class="component">
+                                        <div class="sticky-wrap">
+                                            <table class="sticky-enabled" style="margin: 0px;">
+                                                <thead>
+                                                <tr>
+                                                    <th rowspan="2" style="width:10% !important;">{{__('day-time')}}</th>
+                                                    <th colspan="{{$data['four_week_divide_span']}}">{{$data['four_week_month']}}</th>
+                                                    @if($data['four_week_divide'])
+                                                        <th colspan="{{7 - $data['four_week_divide_span']}}">{{$data['four_week_divide_month']}}</th>
+                                                    @endif
+                                                </tr>
+                                                <tr>
+                                                    @for($i = 0; $i < 7; $i++)
+                                                        <th style="width: 12%"
+                                                            class="{{$data['weekdays'][$i] == "土" ? 'sat' : ($data['weekdays'][$i] == "日" ? 'sun' : "")}}">{{$data['four_week_days'][$i]}}
+                                                            <br>（{{$data['weekdays'][$i]}}）
+                                                        </th>
+                                                    @endfor
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                @for($i = 0,$iMax = count($data['time_array']); $i < $iMax; $i++)
+                                                    <tr>
+                                                        <td class="time">{{$data['time_array'][$i]}}</td>
+                                                        @for($j = 0; $j < 7; $j++)
+                                                            <td>
+                                                                <a href="javascript:void(0);" data-week="{{$j}}" data-date="{{$data['four_week_days'][$j]}}" data-weekday="{{$data['weekdays'][$j]}}" data-time="{{$data['time_array'][$i]}}"
+                                                                   data-month="{{$data['four_week_divide'] ? ($j + 1 > $data['four_week_divide_span'] ? $data['four_week_divide_month'] : $data['four_week_month']) : $data['four_week_month']}}"
+                                                                   class="{{$data['four_week_arr'][$i][$j] == 0 ? 'off' : ($data['four_week_arr'][$i][$j] == 1 ? 'reserveDate maru' : 'reserveDate nai')}}">{{$data['four_week_arr'][$i][$j] == 1 ? '◎' : '×'}}</a>
                                                             </td>
                                                         @endfor
                                                     </tr>
@@ -187,9 +275,25 @@
                 $('#first_week_part').hide()
                 $('#second_week_part').show()
             })
+            $('#next_week_btn2').click(function () {
+                $('#second_week_part').hide()
+                $('#third_week_part').show()
+            })
+            $('#next_week_btn3').click(function () {
+                $('#third_week_part').hide()
+                $('#four_week_part').show()
+            })
             $('#prev_week_btn').click(function () {
                 $('#first_week_part').show()
                 $('#second_week_part').hide()
+            })
+            $('#prev_week_btn3').click(function () {
+                $('#second_week_part').show()
+                $('#third_week_part').hide()
+            })
+            $('#prev_week_btn4').click(function () {
+                $('#third_week_part').show()
+                $('#four_week_part').hide()
             })
             $('a.reserveDate').click(function () {
                 if($(this).hasClass('maru')){
@@ -234,7 +338,6 @@
                         },
                     })
                 }
-
             })
         })
     </script>

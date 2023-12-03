@@ -28,7 +28,7 @@ class SendReservationPreviousConfirmEmail extends Mailable
      */
     public function build()
     {
-        return $this->subject('前日予約確認のお知らせ')
+        return $this->subject('予約の事前確認のお知らせ')
             ->view('mail.reservation-previous-confirm');
     }
 }
